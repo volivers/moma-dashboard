@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import axios from 'axios';
 import { Navbar, Logo, Footer } from './components/Utils';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import TaskList from './components/TaskList';
 import ArtworksTable from './components/ArtworksTable';
 import Timeline from './components/Timeline';
@@ -32,7 +35,7 @@ const App = () => {
         <h1 className="m-4">Dashboard</h1>
         <div className="wrapper-tasks m-4 px-3">
           <div className="title-wrapper">
-            <i className="fa fa-fw fa-cogs" style={{ fontSize: '1.5em' }}></i>
+            <AssignmentIcon />
             <h2>Tasks</h2>
           </div>
           <TaskList tasks={tasks} />
@@ -43,14 +46,14 @@ const App = () => {
         <Logo />
         <div className="wrapper-artworks m-4">
           <div className="title-wrapper">
-            <i className="fa fa-fw fa-heart" style={{ fontSize: '1.5em' }}></i>
+            <FavoriteIcon />
             <h2>ArtWorks</h2>
           </div>
           <ArtworksTable artworks={artworks}/>
         </div>
         <div className="wrapper-timeline m-4">
           <div className="title-wrapper">
-            <i className="fa fa-fw fa-history" style={{ fontSize: '1.5em' }}></i>
+            <ScheduleIcon />
             <h2>Timeline</h2>
           </div>
           <Timeline artworks={artworks} tasks={tasks} />

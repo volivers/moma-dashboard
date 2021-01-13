@@ -1,6 +1,9 @@
 import React from 'react';
-// import './Utils.scss';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export const Navbar = () => {
 
@@ -14,7 +17,7 @@ export const Navbar = () => {
     <SideNav.Nav defaultSelected="home">
         <NavItem eventKey="dashboard">
             <NavIcon>
-                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                <HomeIcon />
             </NavIcon>
             <NavText>
                 Dashboard
@@ -22,7 +25,7 @@ export const Navbar = () => {
         </NavItem>
         <NavItem eventKey="notifications">
             <NavIcon>
-                <i className="fa fa-fw fa-bell" style={{ fontSize: '1.75em' }} />
+                <NotificationsIcon />
             </NavIcon>
             <NavText>
                 Notifications
@@ -30,30 +33,30 @@ export const Navbar = () => {
         </NavItem>
         <NavItem eventKey="views">
             <NavIcon>
-                <i className="fa fa-fw fa-search" style={{ fontSize: '1.75em' }} />
+              <SearchIcon />
             </NavIcon>
             <NavText>
                 Views
             </NavText>
         </NavItem>
-        <NavItem eventKey="settings">
+        <NavItem eventKey="profile">
             <NavIcon>
-                <i className="fa fa-fw fa-user" style={{ fontSize: '1.75em' }}></i>
+                <AccountCircleIcon />
             </NavIcon>
             <NavText>
                 Profile
             </NavText>
-            <NavItem eventKey="settings/editprofile">
+            <NavItem eventKey="profile/editprofile">
                 <NavText>
                     Edit profile
                 </NavText>
             </NavItem>
-            <NavItem eventKey="settings/settings">
+            <NavItem eventKey="profile/settings">
                 <NavText>
                     Settings
                 </NavText>
             </NavItem>
-            <NavItem eventKey="settings/signout">
+            <NavItem eventKey="profile/signout">
                 <NavText>
                     Sign out
                 </NavText>

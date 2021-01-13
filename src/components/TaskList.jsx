@@ -1,16 +1,18 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Alert from '@material-ui/lab/Alert';
 
 const TaskList = ({ tasks }) => {
 
   return (
-    <ListGroup variant="flush">
+    <div className="tasks-list">
       {tasks.map(task => {
         return(
-          <ListGroup.Item key={task.id}>{task.title}</ListGroup.Item>
+          <Alert variant="filled" severity="error" key={task.id} className="m-2" onClose={() => {}}>
+            {task.title}
+          </Alert>
         );
       })}
-    </ListGroup>
+    </div>
   );
 }
 
