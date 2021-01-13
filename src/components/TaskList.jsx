@@ -1,18 +1,15 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Task from './Task';
 
-const TaskList = () => {
+const TaskList = ({ tasks }) => {
 
   return (
     <ListGroup variant="flush">
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
+      {tasks.map(task => {
+        return(
+          <ListGroup.Item key={task.id}>{task.title}</ListGroup.Item>
+        );
+      })}
     </ListGroup>
   );
 }
