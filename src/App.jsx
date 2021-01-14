@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import axios from 'axios';
-import { Navbar, Logo, Footer } from './components/Utils';
+import { Navbar, Logo, Footer, makeArtworks, makeTasks } from './components/Utils';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ScheduleIcon from '@material-ui/icons/Schedule';
@@ -13,20 +12,12 @@ const App = () => {
   const [artworks, setArtworks] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const getData = async () => {
-    const url = "https://raw.githubusercontent.com/volivers/moma-mock-data/master/db.json";
-
-    try {
-      const res = await axios.get(url) 
-      // console.log(res.data);
-      setArtworks(res.data.artworks);
-      setTasks(res.data.tasks);
-    } catch (err) {
-      console.error(err.message);
-    }
+  const makeData = () => {
+      setArtworks(makeArtworks(250));
+      setTasks(makeTasks(100));
   };
 
-  useEffect(() => { getData(); },[])
+  useEffect(() => { makeData(); },[])
 
   return (
     <div className="app">

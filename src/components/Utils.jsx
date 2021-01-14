@@ -1,4 +1,5 @@
 import React from 'react';
+import faker from 'faker';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
@@ -92,4 +93,66 @@ export const Footer = () => {
     </div>
 
   );
+};
+
+const range = len => {
+  const arr = [];
+  for (let i = 0; i < len; i++) {
+    arr.push(i);
+  }
+  return arr;
+};
+
+const newArtwork = () => {
+  const artists = ["Vincent van Gogh", "Andy Warhol", "Pablo Picasso", "Salvador Dalí"];
+  const sampleArtist = artists[Math.floor ( Math.random() * artists.length )];
+  const sampleTitle = faker.lorem.words();
+  const statusChance = Math.random();
+
+  return {
+    id: Math.floor(Math.random() * 1000),
+    title: sampleTitle,
+    artist: sampleArtist,
+    collection: 'Modern Art',
+    medium: 'Oil on canvas',
+    dimensions: '73 x 92',
+    status:
+      statusChance > 0.66
+        ? "Done"
+        : statusChance > 0.33 ? "In progress" : "Backlog"
+  };
+};
+
+export const makeArtworks = len => {
+  return range(len).map(d => {
+    return {
+      ...newArtwork(),
+      children: range(10).map(newArtwork)
+    };
+  });
+};
+
+const newTask = () => {
+  const sampleTitle = faker.git.commitMessage();
+  const sampleDate = faker.date.recent();
+  const statusChance = Math.random();
+
+  return {
+    id: Math.floor(Math.random() * 1000),
+    title: sampleTitle,
+    date: sampleDate,
+    priority:
+      statusChance > 0.66
+        ? "High"
+        : statusChance > 0.33 ? "Medium" : "Low"
+  };
+};
+
+export const makeTasks = len => {
+  return range(len).map(d => {
+    return {
+      ...newTask(),
+      children: range(10).map(newTask)
+    };
+  });
 };
