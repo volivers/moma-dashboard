@@ -1,6 +1,5 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const ArtworksTable = ({ artworks }) => {
 

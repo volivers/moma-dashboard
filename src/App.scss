@@ -3,9 +3,8 @@
 
 #root > div {
   display: flex;
-  height: 100vh;
-  width: 92%;
-  background-color: #fff;
+  min-height: 100vh;
+  width: 85%;
   font-family: 'Roboto', serif;
 
   h1 {
@@ -15,6 +14,7 @@
     text-transform: uppercase;
     font-weight: lighter;
   }
+
   h2 {
     font-size: 30px;
     font-family: 'Open Sans', serif;
@@ -26,22 +26,28 @@
   .title-wrapper {
     display: flex;
     align-items: center;
-    i {
-      margin: 0 5px 10px 0;
+
+    h2 {
+      margin-left: 5px;
+    }
+  }
+
+  .right-scene {
+    flex: 0 0 40%;
+    // position: sticky;
+    display: flex;
+    flex-direction: column;
+    margin-top: 190px;
+
+    .list-wrapper {
+      max-height: 70vh;
+      overflow: auto;
     }
   }
 
   .left-scene {
-    flex: 0 0 40%;
-    position: sticky;
-    display: flex;
-    flex-direction: column;
-    margin-left: 8%;
-    // overflow: scroll;
-  }
-
-  .right-scene {
     flex: 0 0 60%;
+    margin: 80px 50px 0 50px;
     // overflow: scroll;
   }
 }

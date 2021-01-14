@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Navbar, Logo, Footer, makeArtworks, makeTasks } from './components/Utils';
+import { Footer, makeArtworks, makeTasks } from './components/Utils';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import TaskList from './components/TaskList';
 import ArtworksTable from './components/ArtworksTable';
 import Timeline from './components/Timeline';
+import SideDrawer from './components/SideDrawer';
 
 const App = () => {
   const [artworks, setArtworks] = useState([]);
@@ -21,33 +22,33 @@ const App = () => {
 
   return (
     <div className="app">
-      <Navbar />
+      <SideDrawer />
       <div className="left-scene">
-        <h1 className="m-4">Dashboard</h1>
-        <div className="wrapper-tasks m-4 px-3">
-          <div className="title-wrapper">
-            <AssignmentIcon />
-            <h2>Tasks</h2>
-          </div>
-          <TaskList tasks={tasks} />
-        </div>
-      </div>
-
-      <div className="right-scene">
-        <Logo />
-        <div className="wrapper-artworks m-4">
+        <h1>Dashboard</h1>
+        <div className="wrapper-artworks">
           <div className="title-wrapper">
             <FavoriteIcon />
             <h2>ArtWorks</h2>
           </div>
           <ArtworksTable artworks={artworks}/>
         </div>
-        <div className="wrapper-timeline m-4">
+        <div className="wrapper-timeline">
           <div className="title-wrapper">
             <ScheduleIcon />
             <h2>Timeline</h2>
           </div>
           <Timeline artworks={artworks} tasks={tasks} />
+        </div>
+      </div>
+      <div className="right-scene">
+        <div className="wrapper-tasks">
+          <div className="title-wrapper">
+            <AssignmentIcon />
+            <h2>Tasks</h2>
+          </div>
+          <div className="list-wrapper">
+            <TaskList tasks={tasks} />
+          </div>
         </div>
         <Footer />
       </div>

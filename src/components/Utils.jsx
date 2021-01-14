@@ -1,78 +1,11 @@
 import React from 'react';
 import faker from 'faker';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import HomeIcon from '@material-ui/icons/Home';
-import SearchIcon from '@material-ui/icons/Search';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
-export const Navbar = () => {
-
-  return (
-    <SideNav
-    onSelect={(selected) => {
-        // Add your code here
-    }}
->
-    <SideNav.Toggle />
-    <SideNav.Nav defaultSelected="home">
-        <NavItem eventKey="dashboard">
-            <NavIcon>
-                <HomeIcon />
-            </NavIcon>
-            <NavText>
-                Dashboard
-            </NavText>
-        </NavItem>
-        <NavItem eventKey="notifications">
-            <NavIcon>
-                <NotificationsIcon />
-            </NavIcon>
-            <NavText>
-                Notifications
-            </NavText>
-        </NavItem>
-        <NavItem eventKey="views">
-            <NavIcon>
-              <SearchIcon />
-            </NavIcon>
-            <NavText>
-                Views
-            </NavText>
-        </NavItem>
-        <NavItem eventKey="profile">
-            <NavIcon>
-                <AccountCircleIcon />
-            </NavIcon>
-            <NavText>
-                Profile
-            </NavText>
-            <NavItem eventKey="profile/editprofile">
-                <NavText>
-                    Edit profile
-                </NavText>
-            </NavItem>
-            <NavItem eventKey="profile/settings">
-                <NavText>
-                    Settings
-                </NavText>
-            </NavItem>
-            <NavItem eventKey="profile/signout">
-                <NavText>
-                    Sign out
-                </NavText>
-            </NavItem>
-        </NavItem>
-    </SideNav.Nav>
-</SideNav>
-  );
-};
 
 export const Logo = () => {
   return (
-    <div className="logo m-4">
+    <div className="logo">
       <a href="https://www.moma.org/" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Museum_of_Modern_Art_logo.svg" alt="MoMA logo" height="50" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Museum_of_Modern_Art_logo.svg" alt="MoMA logo" height="20" fill="fff" />
       </a>
     </div>
   );

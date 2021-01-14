@@ -1,0 +1,14 @@
+.tasks-list {
+  .error {
+    margin: 10px;
+    background-color: rgba(255, 69, 96, 0.85);
+  }
+  .warning {
+    margin: 10px;
+    background-color: rgba(254, 176, 25, 0.85);
+  }
+  .info {
+    margin: 10px;
+    background-color: rgba(0, 227, 150, 0.85);
+  }
+}
