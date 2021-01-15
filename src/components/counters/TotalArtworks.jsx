@@ -10,8 +10,12 @@ class TotalArtworks extends React.Component {
       options: {
         chart: {
           height: 200,
+          width: 200,
           type: 'radialBar',
-          offsetY: -10
+          offsetY: -10,
+          sparkline: {
+            enabled: true
+          }
         },
         grid: {
           padding: {
@@ -62,7 +66,7 @@ class TotalArtworks extends React.Component {
   render() {
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={200} />
+        <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={200} width={200} />
       </div>
     );
   }

@@ -3,109 +3,109 @@ import ReactApexChart from 'react-apexcharts';
 import moment from 'moment';
 window.moment = moment
 
+
+function generateData(count) {
+  let i = 0;
+  let series = [];
+  while (i < count) {
+    let y =
+      Math.floor(Math.random() * 100);
+
+    series.push(y);
+    i++;
+  }
+  return series;
+}
+
 class Timeline extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
     
-      series: [
+      series: [{
+          name: 'Jan',
+          data: generateData(20)
+        },
         {
-          data: [
-            {
-              x: 'Analysis',
-              y: [
-                new Date('2019-02-27').getTime(),
-                new Date('2019-03-04').getTime()
-              ],
-              fillColor: '#008FFB'
-            },
-            {
-              x: 'Design',
-              y: [
-                new Date('2019-03-04').getTime(),
-                new Date('2019-03-08').getTime()
-              ],
-              fillColor: '#00E396'
-            },
-            {
-              x: 'Coding',
-              y: [
-                new Date('2019-03-07').getTime(),
-                new Date('2019-03-10').getTime()
-              ],
-              fillColor: '#775DD0'
-            },
-            {
-              x: 'Testing',
-              y: [
-                new Date('2019-03-08').getTime(),
-                new Date('2019-03-12').getTime()
-              ],
-              fillColor: '#FEB019'
-            },
-            {
-              x: 'Deployment',
-              y: [
-                new Date('2019-03-12').getTime(),
-                new Date('2019-03-17').getTime()
-              ],
-              fillColor: '#FF4560'
-            }
-          ]
+          name: 'Feb',
+          data: generateData(20)
+        },
+        {
+          name: 'Mar',
+          data: generateData(20)
+        },
+        {
+          name: 'Apr',
+          data: generateData(20)
+        },
+        {
+          name: 'May',
+          data: generateData(20)
+        },
+        {
+          name: 'Jun',
+          data: generateData(20)
+        },
+        {
+          name: 'Jul',
+          data: generateData(20)
+        },
+        {
+          name: 'Aug',
+          data: generateData(20)
+        },
+        {
+          name: 'Sep',
+          data: generateData(20)
         }
       ],
       options: {
         chart: {
           height: 350,
-          type: 'rangeBar'
+          type: 'heatmap',
         },
         plotOptions: {
-          bar: {
-            horizontal: true,
-            distributed: true,
-            dataLabels: {
-              hideOverflowingLabels: false
+          heatmap: {
+            tooltip: {
+              enabled: false
+            },
+            shadeIntensity: 0.5,
+            radius: 0,
+            useFillColorAsStroke: true,
+            colorScale: {
+              ranges: [{
+                  name: 'High priority',
+                  color: 'rgba(255, 69, 96, 0.85)'
+                },
+                {
+                  name: 'Medium priority',
+                  color: 'rgba(254, 176, 25, 0.85)'
+                },
+                {
+                  name: 'Low priority',
+                  color: 'rgba(0, 227, 150, 0.85)'
+                }
+              ]
             }
           }
         },
         dataLabels: {
-          enabled: true,
-          formatter: function(val, opts) {
-            var label = opts.w.globals.labels[opts.dataPointIndex]
-            var a = moment(val[0])
-            var b = moment(val[1])
-            var diff = b.diff(a, 'days')
-            return label + ': ' + diff + (diff > 1 ? ' days' : ' day')
-          },
-          style: {
-            colors: ['#f3f4f5', '#fff']
-          }
+          enabled: false
         },
-        xaxis: {
-          type: 'datetime'
+        stroke: {
+          width: 1
         },
-        yaxis: {
-          show: false
+        title: {
+          text: 'Number of Tasks completed per Month'
         },
-        grid: {
-          row: {
-            colors: ['#f3f4f5', '#fff'],
-            opacity: 1
-          }
-        }
-      },
-    
-    
+      }
     };
   }
-
-
-
   render() {
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="rangeBar" height={350} />
+        <ReactApexChart options={this.state.options} series={this.state.series} type="heatmap" height={350} />
       </div>
     );
   }

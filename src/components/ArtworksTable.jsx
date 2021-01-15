@@ -5,7 +5,7 @@ const ArtworksTable = ({ artworks }) => {
 
 
   return (
-    <div style={{ height: 250, width: '100%' }}>
+    <div style={{ height: 300, width: '100%' }}>
       <DataGrid
         rowHeight={25}
         headerHeight={40}
