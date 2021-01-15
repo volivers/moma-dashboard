@@ -1,10 +1,30 @@
-import React from 'react';
-import { XGrid } from '@material-ui/x-grid';
+import React, { useState, useEffect } from 'react';
+import { LinkOperator, XGrid } from '@material-ui/x-grid';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
 const ArtworksTable = ({ artworks }) => {
+  // const [filter, setFilter] = useState("van");
+  
 
+  // const handleChange = (event) => {
+  //   // setFilter(e.target.value);
+  //   console.log(event.target.value)
+  // }
+
+  const filterModel = {
+    items: [
+      { columnField: 'artist',
+        operatorValue: 'contains',
+        value: 'van',
+        // onChange: handleChange(event: console.log(event.target.value)) => void
+      },
+      { columnField: 'collection', operatorValue: 'contains', value: 'Modern' },
+    ],
+    linkOperator: LinkOperator.Or,
+  };
+
+  const [views, setViews] = useState(filterModel.items);
 
   return (
     <div style={{ height: 300, width: '100%' }}>
@@ -34,6 +54,7 @@ const ArtworksTable = ({ artworks }) => {
           { field: 'status', headerName: 'Status', description: 'Status', width: 110 }
         ]}
         rows={artworks}
+        filterModel={filterModel}
       />
     </div>
   );
