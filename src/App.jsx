@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { makeArtworks, makeTasks, makeUsers } from './components/common/Utils';
 import SideDrawer from './components/common/SideDrawer';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import TaskList from './components/TaskList';
-import TotalArtworks from './components/counters/TotalArtworks';
 import ImplementedArtworks from './components/counters/ImplementedArtworks';
 import CompletedTasks from './components/counters/CompletedTasks';
 import ArtworksTable from './components/ArtworksTable';
+import TotalArtworks from './components/counters/TotalArtworks';
 import Timeline from './components/Timeline';
+import TaskList from './components/TaskList';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
 import Footer from './components/common/Footer';
 
 const App = () => {
@@ -54,6 +59,23 @@ const App = () => {
         </div>
       </div>
       <div className="right-scene">
+        <div className="btn-wrapper">
+          <Tooltip title="Add task">
+            <Fab color="primary" aria-label="add" size="large" className="btn">
+              <AddIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip title="Edit task">
+            <Fab aria-label="edit" size="large" className="btn">
+              <EditIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip title="Save view">
+            <Fab aria-label="save"  size="large" className="btn">
+              <SaveIcon />
+            </Fab>
+          </Tooltip>
+        </div>
         <div className="wrapper-tasks">
           <div className="title-wrapper">
             <AssignmentIcon />

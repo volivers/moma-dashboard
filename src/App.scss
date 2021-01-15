@@ -39,6 +39,14 @@
     margin: 190px 0 0px 0;
     position: relative;
 
+    .btn-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      .btn {
+        margin: 0 10px;
+      }
+    }
+
     .list-wrapper {
       max-height: 130vh;
       overflow: auto;
