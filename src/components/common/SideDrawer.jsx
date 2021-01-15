@@ -1,4 +1,5 @@
 import React from 'react';
+import './SideDrawer.scss';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    overflowX: 'hidden',
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
@@ -76,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
   content: {
@@ -85,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SideDrawer = () => {
+const SideDrawer = ({ users }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -99,7 +100,7 @@ const SideDrawer = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <nav className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -107,60 +108,67 @@ const SideDrawer = () => {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Logo />
-        </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
+      <Toolbar className="toolbar">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          className={clsx(classes.menuButton, {
+            [classes.hide]: open,
+          })}
+        >
+          <MenuIcon />
+        </IconButton>
+        {users.map(user => {
+          return(
+            <p key={user.id}>Hello, {user.firstName}.</p>
+          );
+        })}
+        <Logo class="logo"/>
+      </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
-            }),
-          }}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <List>
-            <ListItem button key='Dashboard'>
-              <ListItemIcon><DashboardIcon /></ListItemIcon>
-              <ListItemText primary='Dashboard' />
-            </ListItem>
-            <ListItem button key='Notifications'>
-              <ListItemIcon><NotificationsIcon /></ListItemIcon>
-              <ListItemText primary='Notifications' />
-            </ListItem>
-            <ListItem button key='Views'>
-              <ListItemIcon><SearchIcon /></ListItemIcon>
-              <ListItemText primary='Views' />
-            </ListItem>
-            <ListItem button key='Profile'>
-              <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-              <ListItemText primary='Profile' />
-            </ListItem>
-          </List>
-          <img src="https://www.iloveny.com/includes/public/assets/images/svg/logo.svg" alt="NY logo"/>
-        </Drawer>
-    </div>
+          }),
+        }}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </div>
+        <List>
+          <ListItem button key='Dashboard'>
+            <ListItemIcon className="list-icon"><DashboardIcon /></ListItemIcon>
+            <ListItemText primary='Dashboard' />
+          </ListItem>
+          <ListItem button key='Notifications'>
+            <ListItemIcon className="list-icon"><NotificationsIcon/></ListItemIcon>
+            <ListItemText primary='Notifications' />
+          </ListItem>
+          <ListItem button key='Views'>
+            <ListItemIcon className="list-icon"><SearchIcon /></ListItemIcon>
+            <ListItemText primary='Views' />
+          </ListItem>
+          <ListItem button key='Profile'>
+            <ListItemIcon className="list-icon"><AccountCircleIcon /></ListItemIcon>
+            <ListItemText primary='Profile' />
+          </ListItem>
+        </List>
+        <div className="detail-item">
+          <img src="https://www.iloveny.com/includes/public/assets/images/svg/logo.svg" alt="NY logo" height="150" width="72" className="trademark"/>
+        </div>
+      </Drawer>
+    </nav>
   );
 };
 

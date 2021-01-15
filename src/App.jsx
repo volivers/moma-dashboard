@@ -1,30 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Footer, makeArtworks, makeTasks } from './components/Utils';
+import { makeArtworks, makeTasks, makeUsers } from './components/common/Utils';
+import SideDrawer from './components/common/SideDrawer';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import TaskList from './components/TaskList';
+import TotalArtworks from './components/counters/TotalArtworks';
+import ImplementedArtworks from './components/counters/ImplementedArtworks';
+import CompletedTasks from './components/counters/CompletedTasks';
 import ArtworksTable from './components/ArtworksTable';
 import Timeline from './components/Timeline';
-import SideDrawer from './components/SideDrawer';
+import Footer from './components/common/Footer';
 
 const App = () => {
   const [artworks, setArtworks] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const makeData = () => {
       setArtworks(makeArtworks(250));
+      console.log(makeArtworks(250));
       setTasks(makeTasks(100));
+      console.log(makeTasks(100));
+      setUsers(makeUsers(1));
   };
 
   useEffect(() => { makeData(); },[])
 
   return (
-    <div className="app">
-      <SideDrawer />
+    <main className="app">
+      <SideDrawer users={users}/>
       <div className="left-scene">
         <h1>Dashboard</h1>
+        <div className="wrapper-counters">
+          <TotalArtworks artworks={artworks}/>
+          <ImplementedArtworks artworks={artworks}/>
+          <CompletedTasks tasks={tasks}/>
+        </div>        
         <div className="wrapper-artworks">
           <div className="title-wrapper">
             <FavoriteIcon />
@@ -52,7 +65,7 @@ const App = () => {
         </div>
         <Footer />
       </div>
-    </div>
+    </main>
   );
 }
 

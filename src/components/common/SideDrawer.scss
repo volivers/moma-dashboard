@@ -1,0 +1,24 @@
+.toolbar {
+  background-color: #000;
+
+  p {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1em;
+  }
+
+  .logo {
+    margin-left: auto;
+  }
+}
+
+.list-icon {
+  margin-left: 7px !important;
+}
+
+.detail-item {
+  margin-top: auto;
+  .trademark {
+    transform: rotate(-90deg); 
+  }
+}

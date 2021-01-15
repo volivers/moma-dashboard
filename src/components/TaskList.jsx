@@ -11,7 +11,7 @@ const TaskList = ({ tasks }) => {
           <Alert variant="filled"
           severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
           className={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
-          key={task.id} onClose={() => {}}>
+          key={task.date} onClose={() => {}}>
             {task.title}
           </Alert>
         );
