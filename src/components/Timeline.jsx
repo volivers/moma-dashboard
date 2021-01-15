@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import moment from 'moment';
-window.moment = moment
-
 
 function generateData(count) {
   let i = 0;

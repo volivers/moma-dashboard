@@ -1,12 +1,25 @@
 import React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { XGrid } from '@material-ui/x-grid';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 
 const ArtworksTable = ({ artworks }) => {
 
 
   return (
     <div style={{ height: 300, width: '100%' }}>
-      <DataGrid
+      <div className="btn-wrapper">
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          startIcon={<SaveIcon />}
+        >
+          Save view
+        </Button>
+      </div>
+      <XGrid
+        showToolbar
         rowHeight={25}
         headerHeight={40}
         pageSize={50}

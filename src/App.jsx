@@ -15,7 +15,7 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
-import SaveIcon from '@material-ui/icons/Save';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import Footer from './components/common/Footer';
 
 const App = () => {
@@ -70,9 +70,9 @@ const App = () => {
               <EditIcon />
             </Fab>
           </Tooltip>
-          <Tooltip title="Save view">
+          <Tooltip title="Export data">
             <Fab aria-label="save"  size="large" className="btn">
-              <SaveIcon />
+              <CloudDownloadIcon />
             </Fab>
           </Tooltip>
         </div>

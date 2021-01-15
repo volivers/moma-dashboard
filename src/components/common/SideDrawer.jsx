@@ -15,7 +15,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Logo } from './Utils';
@@ -155,9 +155,9 @@ const SideDrawer = ({ users }) => {
             <ListItemIcon className="list-icon"><NotificationsIcon/></ListItemIcon>
             <ListItemText primary='Notifications' />
           </ListItem>
-          <ListItem button key='Views'>
-            <ListItemIcon className="list-icon"><SearchIcon /></ListItemIcon>
-            <ListItemText primary='Views' />
+          <ListItem button key='Settings'>
+            <ListItemIcon className="list-icon"><SettingsIcon /></ListItemIcon>
+            <ListItemText primary='Settings' />
           </ListItem>
           <ListItem button key='Profile'>
             <ListItemIcon className="list-icon"><AccountCircleIcon /></ListItemIcon>

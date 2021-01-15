@@ -8,12 +8,16 @@ const TaskList = ({ tasks }) => {
     <div className="tasks-list">
       {tasks.map(task => {
         return(
-          <Alert variant="filled"
-          severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
-          className={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
-          key={task.date} onClose={() => {}}>
-            {task.title}
-          </Alert>
+          <div className="task-item">
+            <Alert variant="filled"
+              severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
+              className={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
+              key={task.date}
+              onClose={() => {}}
+            >{task.title}
+            </Alert>
+          </div>
+
         );
       })}
     </div>
