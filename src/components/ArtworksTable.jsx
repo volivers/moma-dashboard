@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { LinkOperator, XGrid } from '@material-ui/x-grid';
 import SaveIcon from '@material-ui/icons/Save';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    //   color: props.severity === "High" ? "red" : "blue"
+      margin: '10px 0',
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -20,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArtworksTable = ({ artworks }) => {
-
   const classes = useStyles();
+
   const [state, setState] = useState('');
 
   const handleChange = (event) => {
@@ -84,6 +88,7 @@ const ArtworksTable = ({ artworks }) => {
         </div>
       </div>
       <XGrid
+        className={classes.root}
         showToolbar
         rowHeight={25}
         headerHeight={40}

@@ -56,6 +56,13 @@ const newTask = (index) => {
       randChance > 0.66
         ? "High"
         : randChance > 0.33 ? "Medium" : "Low",
+    user:
+      randChance > 0.75
+        ? "Robin"
+        : randChance > 0.5
+        ? "Barney"
+        : randChance > 0.25
+        ? "Marshall" : "Lilly",
     completed:
       randChance > 0.5
         ? true : false
@@ -70,20 +77,20 @@ export const makeTasks = len => {
   });
 };
 
-const newUser = (index) => {
+const currentUser = (index) => {
   return {
     id: index,
-    firstName: faker.name.firstName(),
-    LastName: faker.name.lastName(),
-    email: faker.internet.email(),
+    firstName: "Ted",
+    LastName: "Mosby",
+    email: "ted.mosby@gmail.com",
     password: faker.internet.password()
   };
 };
 
-export const makeUsers = len => {
+export const makeCurrentUsers = len => {
   return range(len).map((user, index) => {
     return {
-      ...newUser(index + 1)
+      ...currentUser(index + 1)
     };
   });
 };
