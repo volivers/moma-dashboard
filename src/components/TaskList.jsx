@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import './TaskList.scss';
-import _ from "lodash";
-import moment from 'moment';
 
+// import _ from "lodash";
+import { format } from 'date-fns';
 
 import Alert from '@material-ui/lab/Alert';
 import TaskForm from './TaskForm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import ErrorIcon from '@material-ui/icons/Error';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
@@ -26,7 +23,6 @@ import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-  //   color: props.severity === "High" ? "red" : "blue"
     margin: '10px 10px',
     transition: 'transform .3s ease-in',
     "&:hover": {
@@ -43,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, task }) => {
   const classes = useStyles();
 
   const [state, setState] = useState('');
@@ -70,13 +66,13 @@ const TaskList = ({ tasks }) => {
   
 
 
-  const datesToFormat = item => moment(item.date).format('MM-DD');
+  // const datesToFormat = item => moment(item.date).format('MM-DD');
 
-  const sortedTasksByDate = _(tasks)
-    .groupBy(datesToFormat)
-    // .mapValues(items => _.map(items, 'title'))
-    .value()
-    console.log(sortedTasksByDate)
+  // const sortedTasksByDate = _(tasks)
+  //   .groupBy(datesToFormat)
+  //   .mapValues(items => _.map(items, 'title'))
+  //   .value()
+  //   console.log(sortedTasksByDate)
   
   // const arr = Object.entries(sortedTasksByDate).map(([key, value]) => {
   //   console.log("key:", key, "\nvalue:", value)
@@ -88,13 +84,13 @@ const TaskList = ({ tasks }) => {
     <div className="tasks-list">
       <div className="btn-wrapper">
         <Tooltip title="Create task">
-          <Fab color="primary" aria-label="add" size="large" className="btn" onClick={handleOpen}>
+          <Fab color="primary" aria-label="add" size="large" className="btn" tasks={tasks} onClick={handleOpen}>
             <AddIcon />
           </Fab>
         </Tooltip>
         <TaskForm open={open} setOpen={setOpen} />
         <Tooltip title="Edit task">
-          <Fab aria-label="edit" size="large" className="btn">
+          <Fab aria-label="edit" size="large" className="btn" task={task} onClick={handleOpen}>
             <EditIcon />
           </Fab>
         </Tooltip>
@@ -105,43 +101,55 @@ const TaskList = ({ tasks }) => {
         </Tooltip>
       </div>
       <div className="wrapper-tasks" >
-        <div className="title-wrapper">
+        <div className="title-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <h2><AssignmentIcon /> Tasks</h2>
-        </div>
-        <div className="views-wrapper" style={{ display: 'flex', alignItems: 'center', alignSelf: 'flex-end' }}>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-native-simple">Views</InputLabel>
-            <Select
-              native
-              value={state.age}
-              onChange={handleChange}
-              inputProps={{
-                name: 'priority',
-                id: 'priority-native-simple',
-              }}
-            >
-              <option value={"High"}>Date (Desc.)</option>
-              <option value={"Medium"}>Date (Asc.)</option>
-              <option value={"Low"}>Priority(Desc.)</option>
-              <option value={"Low"}>Priority (Asc.)</option>
-            </Select>
-          </FormControl>
+          <div className="sorting-wrapper" style={{ display: 'flex', alignItems: 'center', alignSelf: 'flex-end' }}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="age-native-simple">Sort by</InputLabel>
+              <Select
+                native
+                value={tasks.priority}
+                onChange={handleChange}
+                inputProps={{
+                  name: 'priority',
+                  id: 'priority-native-simple',
+                }}
+              >
+                <option value={"date"}>Date (Desc.)</option>
+                <option value={"Medium"}>Date (Asc.)</option>
+                <option value={"Low"}>Priority(Desc.)</option>
+                <option value={"Low"}>Priority (Asc.)</option>
+              </Select>
+            </FormControl>
+          </div>
         </div>
         <div className="list-wrapper">  
           {tasks.map(task => {
             return(
               <div>
-                <Alert variant="filled"
+                <Alert
+                  variant="filled"
                   severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
-                  // className={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
                   className={classes.root}
+                  id={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
                   key={task.id}
+                  task={task}
                   open={completed}
                   onClose={handleClick}
                 >
                   {task.title}
-                  <Chip size="small" style={{ marginLeft: '10px' }} avatar={<ScheduleIcon />} label={task.user}/>
-                  <Chip size="small" style={{ marginLeft: '5px' }} avatar={<AccountCircleIcon />} label={task.user}/>
+                  <Chip
+                    size="small"
+                    style={{ marginLeft: '5px', color: '#616161', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+                    avatar={<ScheduleIcon />}
+                    label={format(task.date, "dd/MM")}
+                  />
+                  <Chip
+                    size="small"
+                    style={{ marginLeft: '5px', color: '#616161', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+                    avatar={<AccountCircleIcon />}
+                    label={task.user}
+                  />
                 </Alert>
               </div>
             );

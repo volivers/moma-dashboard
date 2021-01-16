@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Taskform = ({ open, setOpen }) => {
+const Taskform = ({ open, setOpen, tasks }) => {
 
   const [selectedDate, setSelectedDate] = useState(new Date('2021-02-08T21:11:54'));
 
@@ -129,9 +129,10 @@ const Taskform = ({ open, setOpen }) => {
                 }}
               >
                 <option aria-label="None" value="" />
-                <option value={"High"}>High</option>
-                <option value={"Medium"}>Medium</option>
-                <option value={"Low"}>Low</option>
+                <option value={"High"}>Robin</option>
+                <option value={"Medium"}>Barney</option>
+                <option value={"Low"}>Marshall</option>
+                <option value={"Low"}>Lilly</option>
               </Select>
             </FormControl>
 

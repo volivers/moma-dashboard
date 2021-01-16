@@ -48,6 +48,10 @@ export const makeArtworks = len => {
 const newTask = (index) => {
   const randChance = Math.random();
 
+  const capitalize = (char) => {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
+
   return {
     id: index,
     title: faker.git.commitMessage(),
