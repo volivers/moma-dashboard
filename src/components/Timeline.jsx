@@ -102,10 +102,9 @@ class Timeline extends Component {
   }
   render() {
     return (
-      <div style={{ height: 300, width: '100%' }}>
+      <div className="wrapper-timeline">
         <div className="title-wrapper">
-        <ScheduleIcon />
-        <h2>Timeline</h2>
+        <h2><ScheduleIcon /> Timeline</h2>
         </div>
         <div id="chart">
           <ReactApexChart options={this.state.options} series={this.state.series} type="heatmap" height={350} />

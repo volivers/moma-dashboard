@@ -161,7 +161,11 @@ const SideDrawer = ({ users }) => {
           </ListItem>
           <ListItem button key='Profile'>
             <ListItemIcon className="list-icon"><AccountCircleIcon /></ListItemIcon>
-            <ListItemText primary='Profile' />
+            {users.map(user => {
+              return(
+                <ListItemText primary={user.firstName} />
+              );
+            })}
           </ListItem>
         </List>
         <div className="detail-item">

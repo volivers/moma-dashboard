@@ -55,34 +55,33 @@ const ArtworksTable = ({ artworks }) => {
   const [views, setViews] = useState(filterModel.items);
 
   return (
-    <div style={{ height: 300, width: '100%' }}>
-      <div className="title-wrapper">
-        <FavoriteIcon />
-        <h2>ArtWorks</h2>
-      </div>
-      <div className="views-wrapper" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-native-simple">Views</InputLabel>
-          <Select
-            native
-            value={state.age}
-            onChange={handleChange}
-            inputProps={{
-              name: 'priority',
-              id: 'priority-native-simple',
-            }}
-          >
-            <option aria-label="None" value="" />
-            <option value={"High"}>High</option>
-            <option value={"Medium"}>Medium</option>
-            <option value={"Low"}>Low</option>
-          </Select>
-        </FormControl>
-        <Tooltip title="Save view">
-          <Fab color="primary" aria-label="save" size="small" className="btn">
-            <SaveIcon />
-          </Fab>
-        </Tooltip>
+    <div className="wrapper-artworks" style={{ height: 350, width: '100%' }}>
+      <div className="title-wrapper" style={{ justifyContent: 'space-between' }}>
+        <h2><FavoriteIcon /> ArtWorks</h2>
+        <div className="views-wrapper" style={{ display: 'flex', alignItems: 'center', alignSelf: 'flex-end' }}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="age-native-simple">Views</InputLabel>
+            <Select
+              native
+              value={state.age}
+              onChange={handleChange}
+              inputProps={{
+                name: 'priority',
+                id: 'priority-native-simple',
+              }}
+            >
+              <option aria-label="None" value="" />
+              <option value={"High"}>High</option>
+              <option value={"Medium"}>Medium</option>
+              <option value={"Low"}>Low</option>
+            </Select>
+          </FormControl>
+          <Tooltip title="Save view">
+            <Fab color="primary" aria-label="save" size="small" className="btn">
+              <SaveIcon />
+            </Fab>
+          </Tooltip>
+        </div>
       </div>
       <XGrid
         showToolbar
@@ -92,9 +91,9 @@ const ArtworksTable = ({ artworks }) => {
         pagination
         columns={[
           { field: 'id', headerName: 'ID', hide: true },
-          { field: 'title', headerName: 'Title', description: 'Title', width: 130 },
+          { field: 'title', headerName: 'Title', description: 'Title', width: 110 },
           { field: 'artist', headerName: 'Artist', description: 'Artist', width: 130 },
-          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 130 },
+          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 120 },
           { field: 'medium', headerName: 'Medium', description: 'Medium', width: 110 },
           { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 },
           { field: 'status', headerName: 'Status', description: 'Status', width: 110 }
