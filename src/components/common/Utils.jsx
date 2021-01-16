@@ -4,7 +4,7 @@ import faker from 'faker';
 export const Logo = () => {
   return (
     <div className="logo">
-      <a href="https://www.moma.org/" target="_blank">
+      <a href="https://www.moma.org/" target="_blank" rel="noopener noreferrer">
         <img src="https://res.cloudinary.com/djlmbrvcx/image/upload/v1610641278/Museum_of_Modern_Art_logo_white_fkxk0o.svg" alt="MoMA logo" height="20" />
       </a>
     </div>
@@ -19,15 +19,15 @@ const range = len => {
   return arr;
 };
 
-const newArtwork = () => {
+const newArtwork = (index) => {
   const artists = ["Vincent van Gogh", "Andy Warhol", "Pablo Picasso", "Salvador Dalí"];
   const statusChance = Math.random();
 
   return {
-    id: Math.floor(Math.random() * 1000),
+    id: index,
     title: faker.lorem.words(),
     artist: artists[Math.floor ( Math.random() * artists.length )],
-    collection: 'Modern Art',
+    collection: "Modern Art",
     medium: 'Oil on canvas',
     dimensions: '73 x 92',
     status:
@@ -38,18 +38,18 @@ const newArtwork = () => {
 };
 
 export const makeArtworks = len => {
-  return range(len).map(d => {
+  return range(len).map((artwork, index) => {
     return {
-      ...newArtwork()
+      ...newArtwork(index + 1)
     };
   });
 };
 
-const newTask = () => {
+const newTask = (index) => {
   const randChance = Math.random();
 
   return {
-    id: Math.floor(Math.random() * 1000),
+    id: index,
     title: faker.git.commitMessage(),
     date: faker.date.recent(),
     priority:
@@ -63,16 +63,16 @@ const newTask = () => {
 };
 
 export const makeTasks = len => {
-  return range(len).map(d => {
+  return range(len).map((task, index) => {
     return {
-      ...newTask()
+      ...newTask(index + 250)
     };
   });
 };
 
-const newUser = () => {
+const newUser = (index) => {
   return {
-    id: Math.floor(Math.random() * 100),
+    id: index,
     firstName: faker.name.firstName(),
     LastName: faker.name.lastName(),
     email: faker.internet.email(),
@@ -81,9 +81,9 @@ const newUser = () => {
 };
 
 export const makeUsers = len => {
-  return range(len).map(d => {
+  return range(len).map((user, index) => {
     return {
-      ...newUser()
+      ...newUser(index + 1)
     };
   });
 };

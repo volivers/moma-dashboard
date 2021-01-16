@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 function generateData(count) {
   let i = 0;
@@ -101,8 +102,14 @@ class Timeline extends Component {
   }
   render() {
     return (
-      <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="heatmap" height={350} />
+      <div style={{ height: 300, width: '100%' }}>
+        <div className="title-wrapper">
+        <ScheduleIcon />
+        <h2>Timeline</h2>
+        </div>
+        <div id="chart">
+          <ReactApexChart options={this.state.options} series={this.state.series} type="heatmap" height={350} />
+        </div>
       </div>
     );
   }
