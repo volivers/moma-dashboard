@@ -21,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
-  },
+  }
 }));
 
 const Taskform = ({ open, setOpen, tasks }) => {
+  const classes = useStyles();
 
   const [selectedDate, setSelectedDate] = useState(new Date('2021-02-08T21:11:54'));
 
@@ -32,7 +33,6 @@ const Taskform = ({ open, setOpen, tasks }) => {
     setSelectedDate(date);
   };
 
-  const classes = useStyles();
   const [state, setState] = useState('');
 
   const handleChange = (event) => {
@@ -64,7 +64,6 @@ const Taskform = ({ open, setOpen, tasks }) => {
               type="title"
               fullWidth
             />
-
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
                   margin="dense"
@@ -83,7 +82,7 @@ const Taskform = ({ open, setOpen, tasks }) => {
               <Select
                 margin="dense"
                 native
-                value={state.age}
+                value={tasks.priority}
                 onChange={handleChange}
                 inputProps={{
                   name: 'priority',
@@ -96,47 +95,40 @@ const Taskform = ({ open, setOpen, tasks }) => {
                 <option value={"Low"}>Low</option>
               </Select>
             </FormControl>
-
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="age-native-simple">Artwork</InputLabel>
+              <InputLabel htmlFor="artwork-native-simple">Artwork</InputLabel>
               <Select
                 margin="dense"
                 native
-                value={state.age}
+                value={tasks.artwork_id}
                 onChange={handleChange}
                 inputProps={{
-                  name: 'priority',
-                  id: 'priority-native-simple',
+                  name: 'artwork',
+                  id: 'artwork-native-simple',
                 }}
               >
                 <option aria-label="None" value="" />
-                <option value={"High"}>High</option>
-                <option value={"Medium"}>Medium</option>
-                <option value={"Low"}>Low</option>
               </Select>
             </FormControl>
-
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="age-native-simple">Assign to...</InputLabel>
+              <InputLabel htmlFor="user-native-simple">Assign to...</InputLabel>
               <Select
                 margin="dense"
                 native
-                value={state.age}
+                value={tasks.user}
                 onChange={handleChange}
                 inputProps={{
-                  name: 'priority',
-                  id: 'priority-native-simple',
+                  name: 'user',
+                  id: 'user-native-simple',
                 }}
               >
                 <option aria-label="None" value="" />
                 <option value={"High"}>Robin</option>
                 <option value={"Medium"}>Barney</option>
-                <option value={"Low"}>Marshall</option>
+                <option value={"Low"}>Ted</option>
                 <option value={"Low"}>Lilly</option>
               </Select>
             </FormControl>
-
-
           </Grid>
         </DialogContent>
         <DialogActions>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { makeArtworks, makeTasks, makeCurrentUsers } from './components/common/Utils';
+import { makeArtworks, makeCurrentUsers } from './components/common/Utils';
 import SideDrawer from './components/common/SideDrawer';
 import ImplementedArtworks from './components/counters/ImplementedArtworks';
 import CompletedTasks from './components/counters/CompletedTasks';

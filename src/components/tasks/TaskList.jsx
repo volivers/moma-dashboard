@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
-  wrapperSorting: {
+  wrapperFiltering: {
     display: 'flex',
     alignItems: 'center',
     alignSelf: 'flex-end'
@@ -65,11 +65,6 @@ const useStyles = makeStyles((theme) => ({
   btnFav: {
     margin: '0 10px'
   },
-  // wrapperFilters: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   alignSelf: 'flex-end'
-  // },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -91,13 +86,13 @@ const TaskList = ({ task }) => {
 
   const handleFilterChange = (e, filterType) => {
     switch (filterType) {
-        case "completed":
-            setCompletedFilter(e.target.value);
-            break;
-        case "priority":
-            setPriorityFilter(e.target.value);
-            break;
-        default: break;
+      case "completed":
+          setCompletedFilter(e.target.value);
+          break;
+      case "priority":
+          setPriorityFilter(e.target.value);
+          break;
+      default: break;
     }
   }
 
@@ -118,7 +113,6 @@ const TaskList = ({ task }) => {
     setTasks(filtered);
   }, [priorityFilter])
 
-
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => {
     setOpen(true);
@@ -132,7 +126,7 @@ const TaskList = ({ task }) => {
             <AddIcon />
           </Fab>
         </Tooltip>
-        <TaskForm open={open} setOpen={setOpen} />
+        <TaskForm open={open} setOpen={setOpen} tasks={tasks} />
         <Tooltip title="Edit task">
           <Fab aria-label="edit" size="large" className={classes.btnFav} task={task}>
             <EditIcon />
@@ -147,12 +141,12 @@ const TaskList = ({ task }) => {
       <div className="wrapper-tasks" >
         <div className={classes.wrapperTitle}>
           <h2><AssignmentIcon /> Tasks</h2>
-          <div className={classes.wrapperSorting}>
+          <div className={classes.wrapperFiltering}>
             <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="completed-native-simple">Status</InputLabel>
                   <Select
                     native
-                    value={tasks.completed}
+                    value={completedFilter}
                     onChange={(e) => handleFilterChange(e, "completed")}
                     inputProps={{
                       name: 'completed',
@@ -168,7 +162,7 @@ const TaskList = ({ task }) => {
               <InputLabel htmlFor="priority-native-simple">Priority</InputLabel>
               <Select
                 native
-                value={tasks.priority}
+                value={priorityFilter}
                 onChange={(e) => handleFilterChange(e, "priority")}
                 inputProps={{
                   name: 'priority',
