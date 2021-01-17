@@ -30,6 +30,7 @@ const newArtwork = (index) => {
     collection: "Modern Art",
     medium: 'Oil on canvas',
     dimensions: '73 x 92',
+    task_id: Math.random() * (263 - 250) + 250,
     status:
       statusChance > 0.66
         ? "Done"
@@ -48,14 +49,11 @@ export const makeArtworks = len => {
 const newTask = (index) => {
   const randChance = Math.random();
 
-  const capitalize = (char) => {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-  };
-
   return {
     id: index,
     title: faker.git.commitMessage(),
     date: faker.date.recent(),
+    artwork_id: Math.floor ( Math.random() * 250 ),
     priority:
       randChance > 0.66
         ? "High"
@@ -67,7 +65,7 @@ const newTask = (index) => {
         ? "Barney"
         : randChance > 0.25
         ? "Marshall" : "Lilly",
-    completed:
+    done:
       randChance > 0.5
         ? true : false
   };

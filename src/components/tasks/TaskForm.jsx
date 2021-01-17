@@ -43,13 +43,13 @@ const Taskform = ({ open, setOpen, tasks }) => {
     });
   };
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpen(false);
   };
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleCloseModal} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create new task</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -140,10 +140,10 @@ const Taskform = ({ open, setOpen, tasks }) => {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCloseModal} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} variant="contained" color="primary">
+          <Button onClick={handleCloseModal} variant="contained" color="primary">
             Save
           </Button>
         </DialogActions>

@@ -7,6 +7,8 @@ import { format } from 'date-fns';
 
 import Alert from '@material-ui/lab/Alert';
 import TaskForm from './TaskForm';
+import IconButton from '@material-ui/core/IconButton';
+import DoneIcon from '@material-ui/icons/Done';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import Fab from '@material-ui/core/Fab';
@@ -24,6 +26,7 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '10px 10px',
+    textTransform: 'capitalize',
     transition: 'transform .3s ease-in',
     "&:hover": {
       transform: 'scale(1.02)'
@@ -54,14 +57,15 @@ const TaskList = ({ tasks, task }) => {
 
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
+  const handleOpenModal = () => {
     setOpen(true);
   };
 
-  const [completed, setCompleted] = useState(false);
+  const [done, setDone] = useState(false);
 
-  const handleClick = () => {
-    setCompleted(true);
+  const handleClickDone = (e) => {
+    setDone(true);
+    console.log(e);
   };
   
 
@@ -84,17 +88,17 @@ const TaskList = ({ tasks, task }) => {
     <div className="tasks-list">
       <div className="btn-wrapper">
         <Tooltip title="Create task">
-          <Fab color="primary" aria-label="add" size="large" className="btn" tasks={tasks} onClick={handleOpen}>
+          <Fab color="primary" aria-label="add" size="large" className="btn" tasks={tasks} onClick={handleOpenModal}>
             <AddIcon />
           </Fab>
         </Tooltip>
         <TaskForm open={open} setOpen={setOpen} />
         <Tooltip title="Edit task">
-          <Fab aria-label="edit" size="large" className="btn" task={task} onClick={handleOpen}>
+          <Fab aria-label="edit" size="large" className="btn" task={task}>
             <EditIcon />
           </Fab>
         </Tooltip>
-        <Tooltip title="Export data">
+        <Tooltip title="Export tasks">
           <Fab aria-label="export"  size="large" className="btn">
             <CloudDownloadIcon />
           </Fab>
@@ -134,8 +138,13 @@ const TaskList = ({ tasks, task }) => {
                   id={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
                   key={task.id}
                   task={task}
-                  open={completed}
-                  onClose={handleClick}
+                  action={
+                    <IconButton aria-label="done" size="small" >
+                      <DoneIcon />
+                    </IconButton>
+                  }
+                  open={done}
+                  onClick={handleClickDone}
                 >
                   {task.title}
                   <Chip

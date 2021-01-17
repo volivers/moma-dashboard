@@ -95,12 +95,13 @@ const ArtworksTable = ({ artworks }) => {
         pageSize={50}
         pagination
         columns={[
-          { field: 'id', headerName: 'ID', hide: true },
+          { field: 'id', headerName: '#REF', description: '#REF', hide: true },
           { field: 'title', headerName: 'Title', description: 'Title', width: 110 },
           { field: 'artist', headerName: 'Artist', description: 'Artist', width: 130 },
           { field: 'collection', headerName: 'Collection', description: 'Collection', width: 120 },
           { field: 'medium', headerName: 'Medium', description: 'Medium', width: 110 },
           { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 },
+          { field: 'task_id', headerName: 'Tasks', description: 'Tasks', hide: true },
           { field: 'status', headerName: 'Status', description: 'Status', width: 110 }
         ]}
         rows={artworks}

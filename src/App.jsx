@@ -7,7 +7,7 @@ import CompletedTasks from './components/counters/CompletedTasks';
 import ArtworksTable from './components/ArtworksTable';
 import TotalArtworks from './components/counters/TotalArtworks';
 import Timeline from './components/Timeline';
-import TaskList from './components/TaskList';
+import TaskList from './components/tasks/TaskList';
 import Footer from './components/common/Footer';
 
 const App = () => {
