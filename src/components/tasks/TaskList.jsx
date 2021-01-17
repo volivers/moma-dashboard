@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import Alert from '@material-ui/lab/Alert';
 import TaskForm from './TaskForm';
 import IconButton from '@material-ui/core/IconButton';
-import DoneIcon from '@material-ui/icons/Done';
+import CloseIcon from '@material-ui/icons/Close';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import Fab from '@material-ui/core/Fab';
@@ -83,19 +83,6 @@ const TaskList = ({ task }) => {
   const classes = useStyles();
   const initTasks = makeTasks(13);
 
-
-  const handleFilterChange = (e, filterType) => {
-    switch (filterType) {
-      case "completed":
-          setCompletedFilter(e.target.value);
-          break;
-      case "priority":
-          setPriorityFilter(e.target.value);
-          break;
-      default: break;
-    }
-  }
-
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
     setTasks(initTasks);
@@ -114,6 +101,19 @@ const TaskList = ({ task }) => {
   }, [priorityFilter])
 
   const [open, setOpen] = useState(false);
+
+  const handleFilterChange = (e, filterType) => {
+    switch (filterType) {
+      case "completed":
+          setCompletedFilter(e.target.value);
+          break;
+      case "priority":
+          setPriorityFilter(e.target.value);
+          break;
+      default: break;
+    }
+  }
+
   const handleOpenModal = () => {
     setOpen(true);
   };
@@ -186,10 +186,10 @@ const TaskList = ({ task }) => {
                   className={task.priority === "High" ? classes.error : task.priority === "Medium" ? classes.warning : classes.info}
                   key={task.id}
                   task={task}
-                  action={
+                  action={ task.completed === "false" ?
                     <IconButton aria-label="done" size="small" >
-                      <DoneIcon />
-                    </IconButton>
+                      <CloseIcon />
+                    </IconButton> : ""
                   }
                 >
                   {task.title}

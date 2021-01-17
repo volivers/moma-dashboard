@@ -4,9 +4,9 @@ import { makeArtworks, makeCurrentUsers } from './components/common/Utils';
 import SideDrawer from './components/common/SideDrawer';
 import ImplementedArtworks from './components/counters/ImplementedArtworks';
 import CompletedTasks from './components/counters/CompletedTasks';
-import ArtworksTable from './components/ArtworksTable';
+import ArtworksTable from './components/artworks/ArtworksTable';
 import TotalArtworks from './components/counters/TotalArtworks';
-import Timeline from './components/Timeline';
+import Timeline from './components/timeline/Timeline';
 import TaskList from './components/tasks/TaskList';
 import Footer from './components/common/Footer';
 
