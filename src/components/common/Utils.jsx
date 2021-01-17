@@ -64,10 +64,10 @@ const newTask = (index) => {
         : randChance > 0.5
         ? "Barney"
         : randChance > 0.25
-        ? "Marshall" : "Lilly",
-    done:
+        ? "Ted" : "Lilly",
+    completed:
       randChance > 0.5
-        ? true : false
+        ? "true" : "false"
   };
 };
 

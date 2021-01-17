@@ -12,18 +12,21 @@ import Footer from './components/common/Footer';
 
 const App = () => {
   const [artworks, setArtworks] = useState([]);
-  const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
 
-  const makeData = () => {
+  const handleArtworks = () => {
       setArtworks(makeArtworks(250));
-      console.log(makeArtworks(250));
-      setTasks(makeTasks(13));
-      console.log(makeTasks(13));
-      setUsers(makeCurrentUsers(1));
+      // console.log(makeArtworks(250));
   };
 
-  useEffect(() => { makeData() },[])
+  const handleUsers = () => {
+    setUsers(makeCurrentUsers(1));
+};
+
+  useEffect(() => {
+    handleArtworks();
+    handleUsers();
+  },[])
 
   return (
     <main className="app">
@@ -33,13 +36,13 @@ const App = () => {
         <div className="wrapper-counters">
           <TotalArtworks artworks={artworks}/>
           <ImplementedArtworks artworks={artworks}/>
-          <CompletedTasks tasks={tasks}/>
+          <CompletedTasks />
         </div>        
           <ArtworksTable artworks={artworks}/>
-          <Timeline artworks={artworks} tasks={tasks} />
+          <Timeline artworks={artworks} />
       </div>
       <div className="right-scene">
-        <TaskList tasks={tasks} />
+        <TaskList />
         <Footer />
       </div>
     </main>

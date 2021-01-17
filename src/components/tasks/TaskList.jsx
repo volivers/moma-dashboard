@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { makeTasks } from '../common/Utils';
 import { makeStyles } from '@material-ui/core/styles';
-
-// import _ from "lodash";
 import { format } from 'date-fns';
-
 import Alert from '@material-ui/lab/Alert';
 import TaskForm from './TaskForm';
 import IconButton from '@material-ui/core/IconButton';
@@ -86,30 +84,44 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TaskList = ({ tasks, task }) => {
+const TaskList = ({ task }) => {
   const classes = useStyles();
+  const initTasks = makeTasks(13);
 
-  const [state, setState] = useState('');
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
-  };
+  const handleFilterChange = (e, filterType) => {
+    switch (filterType) {
+        case "completed":
+            setCompletedFilter(e.target.value);
+            break;
+        case "priority":
+            setPriorityFilter(e.target.value);
+            break;
+        default: break;
+    }
+  }
+
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    setTasks(initTasks);
+  },[])
+
+  const [completedFilter, setCompletedFilter] = useState("");
+  useEffect(() => {
+    const filtered = initTasks.map(task => ({ ...task, filtered: task.completed.includes(completedFilter) }));
+    setTasks(filtered)
+  }, [completedFilter])
+
+  const [priorityFilter, setPriorityFilter] = useState("");
+  useEffect(() => {
+    const filtered = initTasks.map(task => ({ ...task, filtered: task.priority.includes(priorityFilter) }));
+    setTasks(filtered);
+  }, [priorityFilter])
+
 
   const [open, setOpen] = useState(false);
-
   const handleOpenModal = () => {
     setOpen(true);
-  };
-
-  const [done, setDone] = useState(false);
-
-  const handleClickDone = (e) => {
-    setDone(true);
-    console.log(e);
   };
 
   return (
@@ -137,27 +149,42 @@ const TaskList = ({ tasks, task }) => {
           <h2><AssignmentIcon /> Tasks</h2>
           <div className={classes.wrapperSorting}>
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="age-native-simple">Sort by</InputLabel>
+                <InputLabel htmlFor="completed-native-simple">Status</InputLabel>
+                  <Select
+                    native
+                    value={tasks.completed}
+                    onChange={(e) => handleFilterChange(e, "completed")}
+                    inputProps={{
+                      name: 'completed',
+                      id: 'completed-native-simple',
+                    }}
+                  >
+                <option aria-label="None" value="" />
+                <option value={"true"}>Completed</option>
+                <option value={"false"}>In progress</option>
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="priority-native-simple">Priority</InputLabel>
               <Select
                 native
                 value={tasks.priority}
-                onChange={handleChange}
+                onChange={(e) => handleFilterChange(e, "priority")}
                 inputProps={{
                   name: 'priority',
                   id: 'priority-native-simple',
                 }}
               >
-                <option value={"date"}>Date (Desc.)</option>
-                <option value={"Medium"}>Date (Asc.)</option>
-                <option value={"Low"}>Priority(Desc.)</option>
-                <option value={"Low"}>Priority (Asc.)</option>
+                <option aria-label="None" value="" />
+                <option value={"High"}>High</option>
+                <option value={"Medium"}>Medium</option>
+                <option value={"Low"}>Low</option>
               </Select>
             </FormControl>
           </div>
         </div>
         <div className={classes.wrapperList}>  
-          {tasks.map(task => {
-            return(
+          {tasks.map(task => task.filtered === true ? (
               <div>
                 <Alert
                   variant="filled"
@@ -170,8 +197,6 @@ const TaskList = ({ tasks, task }) => {
                       <DoneIcon />
                     </IconButton>
                   }
-                  open={done}
-                  onClick={handleClickDone}
                 >
                   {task.title}
                   <Chip
@@ -188,8 +213,7 @@ const TaskList = ({ tasks, task }) => {
                   />
                 </Alert>
               </div>
-            );
-          })}
+          ) : '')}
         </div>
       </div>
     </div>
