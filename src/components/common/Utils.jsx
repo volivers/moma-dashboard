@@ -30,7 +30,7 @@ const newArtwork = (index) => {
     collection: "Modern Art",
     medium: 'Oil on canvas',
     dimensions: '73 x 92',
-    task_id: Math.random() * (263 - 250) + 250,
+    task_id: Math.floor(Math.random() * (13 - 1) + 1),
     status:
       statusChance > 0.66
         ? "Done"
@@ -74,7 +74,7 @@ const newTask = (index) => {
 export const makeTasks = len => {
   return range(len).map((task, index) => {
     return {
-      ...newTask(index + 250)
+      ...newTask(index + 1)
     };
   });
 };

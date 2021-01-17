@@ -1,5 +1,4 @@
 import React from 'react';
-import './SideDrawer.scss';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -19,8 +18,6 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Logo } from './Utils';
-
-
 
 const drawerWidth = 240;
 

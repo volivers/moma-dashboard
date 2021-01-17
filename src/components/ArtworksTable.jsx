@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { LinkOperator, XGrid } from '@material-ui/x-grid';
 import SaveIcon from '@material-ui/icons/Save';
@@ -11,8 +11,21 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    //   color: props.severity === "High" ? "red" : "blue"
-      margin: '10px 0',
+    margin: '10px 0',
+  },
+  wrapperArtworks: {
+    height: 350,
+    width: '100%'
+  },
+  wrapperTitle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  wrapperViews: {
+    display: 'flex',
+    alignItems: 'center',
+    alignSelf: 'flex-end'
   },
   formControl: {
     margin: theme.spacing(1),
@@ -59,10 +72,10 @@ const ArtworksTable = ({ artworks }) => {
   const [views, setViews] = useState(filterModel.items);
 
   return (
-    <div className="wrapper-artworks" style={{ height: 350, width: '100%' }}>
-      <div className="title-wrapper" style={{ justifyContent: 'space-between' }}>
+    <div className={classes.wrapperArtworks}>
+      <div className={classes.wrapperTitle}>
         <h2><FavoriteIcon /> ArtWorks</h2>
-        <div className="views-wrapper" style={{ display: 'flex', alignItems: 'center', alignSelf: 'flex-end' }}>
+        <div className={classes.wrapperViews}>
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="age-native-simple">Views</InputLabel>
             <Select

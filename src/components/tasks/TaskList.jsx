@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import './TaskList.scss';
 
 // import _ from "lodash";
 import { format } from 'date-fns';
@@ -24,7 +23,8 @@ import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  error: {
+    backgroundColor: 'rgba(255, 69, 96, 0.85)',
     margin: '10px 10px',
     textTransform: 'capitalize',
     transition: 'transform .3s ease-in',
@@ -32,7 +32,46 @@ const useStyles = makeStyles((theme) => ({
       transform: 'scale(1.02)'
     }
   },
-  
+  warning: {
+    backgroundColor: 'rgba(254, 176, 25, 0.85)',
+    margin: '10px 10px',
+    textTransform: 'capitalize',
+    transition: 'transform .3s ease-in',
+    "&:hover": {
+      transform: 'scale(1.02)'
+    }
+  },
+  info: {
+    backgroundColor: ' rgba(0, 227, 150, 0.85)',
+    margin: '10px 10px',
+    textTransform: 'capitalize',
+    transition: 'transform .3s ease-in',
+    "&:hover": {
+      transform: 'scale(1.02)'
+    }
+  },
+  wrapperTitle: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  wrapperSorting: {
+    display: 'flex',
+    alignItems: 'center',
+    alignSelf: 'flex-end'
+  },
+  wrapperBtn: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  btnFav: {
+    margin: '0 10px'
+  },
+  // wrapperFilters: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   alignSelf: 'flex-end'
+  // },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -40,6 +79,11 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  wrapperList: {
+    maxHeight: '140vh',
+    overflow: 'auto',
+    marginBottom: '80px'
+  }
 }));
 
 const TaskList = ({ tasks, task }) => {
@@ -67,47 +111,31 @@ const TaskList = ({ tasks, task }) => {
     setDone(true);
     console.log(e);
   };
-  
-
-
-  // const datesToFormat = item => moment(item.date).format('MM-DD');
-
-  // const sortedTasksByDate = _(tasks)
-  //   .groupBy(datesToFormat)
-  //   .mapValues(items => _.map(items, 'title'))
-  //   .value()
-  //   console.log(sortedTasksByDate)
-  
-  // const arr = Object.entries(sortedTasksByDate).map(([key, value]) => {
-  //   console.log("key:", key, "\nvalue:", value)
-  // })
-
-
 
   return (
     <div className="tasks-list">
-      <div className="btn-wrapper">
+      <div className={classes.wrapperBtn}>
         <Tooltip title="Create task">
-          <Fab color="primary" aria-label="add" size="large" className="btn" tasks={tasks} onClick={handleOpenModal}>
+          <Fab color="primary" aria-label="add" size="large" className={classes.btnFav} tasks={tasks} onClick={handleOpenModal}>
             <AddIcon />
           </Fab>
         </Tooltip>
         <TaskForm open={open} setOpen={setOpen} />
         <Tooltip title="Edit task">
-          <Fab aria-label="edit" size="large" className="btn" task={task}>
+          <Fab aria-label="edit" size="large" className={classes.btnFav} task={task}>
             <EditIcon />
           </Fab>
         </Tooltip>
         <Tooltip title="Export tasks">
-          <Fab aria-label="export"  size="large" className="btn">
+          <Fab aria-label="export"  size="large" className={classes.btnFav}>
             <CloudDownloadIcon />
           </Fab>
         </Tooltip>
       </div>
       <div className="wrapper-tasks" >
-        <div className="title-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div className={classes.wrapperTitle}>
           <h2><AssignmentIcon /> Tasks</h2>
-          <div className="sorting-wrapper" style={{ display: 'flex', alignItems: 'center', alignSelf: 'flex-end' }}>
+          <div className={classes.wrapperSorting}>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="age-native-simple">Sort by</InputLabel>
               <Select
@@ -127,15 +155,14 @@ const TaskList = ({ tasks, task }) => {
             </FormControl>
           </div>
         </div>
-        <div className="list-wrapper">  
+        <div className={classes.wrapperList}>  
           {tasks.map(task => {
             return(
               <div>
                 <Alert
                   variant="filled"
                   severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
-                  className={classes.root}
-                  id={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
+                  className={task.priority === "High" ? classes.error : task.priority === "Medium" ? classes.warning : classes.info}
                   key={task.id}
                   task={task}
                   action={

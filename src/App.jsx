@@ -17,9 +17,9 @@ const App = () => {
 
   const makeData = () => {
       setArtworks(makeArtworks(250));
-      // console.log(makeArtworks(250));
+      console.log(makeArtworks(250));
       setTasks(makeTasks(13));
-      // console.log(makeTasks(13));
+      console.log(makeTasks(13));
       setUsers(makeCurrentUsers(1));
   };
 
