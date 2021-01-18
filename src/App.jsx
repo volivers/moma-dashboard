@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { makeArtworks, makeCurrentUsers } from './components/common/Utils';
 import SideDrawer from './components/common/SideDrawer';
-import ImplementedArtworks from './components/counters/ImplementedArtworks';
+import UrgentTasks from './components/counters/UrgentTasks';
 import CompletedTasks from './components/counters/CompletedTasks';
 import ArtworksTable from './components/artworks/ArtworksTable';
 import TotalArtworks from './components/counters/TotalArtworks';
@@ -35,7 +35,7 @@ const App = () => {
         <h1>Dashboard</h1>
         <div className="wrapper-counters">
           <TotalArtworks artworks={artworks}/>
-          <ImplementedArtworks artworks={artworks}/>
+          <UrgentTasks artworks={artworks}/>
           <CompletedTasks />
         </div>        
           <ArtworksTable artworks={artworks}/>

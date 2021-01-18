@@ -30,11 +30,7 @@ const newArtwork = (index) => {
     collection: "Modern Art",
     medium: 'Oil on canvas',
     dimensions: '73 x 92',
-    task_id: Math.floor(Math.random() * (13 - 1) + 1),
-    status:
-      statusChance > 0.66
-        ? "Done"
-        : statusChance > 0.33 ? "In progress" : "Backlog"
+    task_id: Math.floor(Math.random() * (13 - 1) + 1)
   };
 };
 
@@ -53,7 +49,7 @@ const newTask = (index) => {
     id: index,
     title: faker.git.commitMessage(),
     date: faker.date.recent(),
-    artwork_id: Math.floor ( Math.random() * 250 ),
+    artwork_id: Math.floor ( Math.random() * 100 ),
     priority:
       randChance > 0.66
         ? "High"

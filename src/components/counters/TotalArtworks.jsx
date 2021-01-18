@@ -6,7 +6,7 @@ class TotalArtworks extends Component {
     super(props);
     this.state = {
     
-      series: [250],
+      series: [100],
       options: {
         chart: {
           height: 200,

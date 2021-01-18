@@ -7,7 +7,7 @@ class ImplementedArtworks extends Component {
 
     this.state = {
     
-      series: [67],
+      series: [64],
       options: {
         chart: {
           height: 200,
@@ -59,7 +59,7 @@ class ImplementedArtworks extends Component {
         stroke: {
           dashArray: 2
         },
-        labels: ['Implemented Artworks'],
+        labels: ['Urgent Tasks'],
       },
     };
   }

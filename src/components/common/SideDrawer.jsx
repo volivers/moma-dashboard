@@ -105,7 +105,7 @@ const SideDrawer = ({ users }) => {
           [classes.appBarShift]: open,
         })}
       >
-      <Toolbar className="toolbar">
+      <Toolbar className="toolbar-drawer">
         <IconButton
           color="inherit"
           aria-label="open drawer"

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 
-function generateData(count) {
+function generateMockTasks(count) {
   let i = 0;
   let series = [];
   while (i < count) {
@@ -23,39 +23,39 @@ class Timeline extends Component {
     
       series: [{
           name: 'Jan',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Feb',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Mar',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Apr',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'May',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Jun',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Jul',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Aug',
-          data: generateData(20)
+          data: generateMockTasks(20)
         },
         {
           name: 'Sep',
-          data: generateData(20)
+          data: generateMockTasks(20)
         }
       ],
       options: {

@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   wrapperList: {
-    maxHeight: '140vh',
+    maxHeight: '120vh',
     overflow: 'auto',
     marginBottom: '80px'
   }
