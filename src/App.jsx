@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { makeArtworks, makeCurrentUsers } from './components/common/Utils';
+import { makeCurrentUsers } from './components/common/Utils';
 import SideDrawer from './components/common/SideDrawer';
 import UrgentTasks from './components/counters/UrgentTasks';
 import CompletedTasks from './components/counters/CompletedTasks';
@@ -11,35 +11,23 @@ import TaskList from './components/tasks/TaskList';
 import Footer from './components/common/Footer';
 
 const App = () => {
-  const [artworks, setArtworks] = useState([]);
   const [users, setUsers] = useState([]);
-
-  const handleArtworks = () => {
-      setArtworks(makeArtworks(250));
-      // console.log(makeArtworks(250));
-  };
-
-  const handleUsers = () => {
-    setUsers(makeCurrentUsers(1));
-};
-
   useEffect(() => {
-    handleArtworks();
-    handleUsers();
+    setUsers(makeCurrentUsers(1));
   },[])
 
   return (
     <main className="app">
-      <SideDrawer users={users}/>
+      <SideDrawer users={users} />
       <div className="left-scene">
         <h1>Dashboard</h1>
         <div className="wrapper-counters">
-          <TotalArtworks artworks={artworks}/>
-          <UrgentTasks artworks={artworks}/>
+          <TotalArtworks />
+          <UrgentTasks />
           <CompletedTasks />
         </div>        
-          <ArtworksTable artworks={artworks}/>
-          <Timeline artworks={artworks} />
+          <ArtworksTable />
+          <Timeline />
       </div>
       <div className="right-scene">
         <TaskList />

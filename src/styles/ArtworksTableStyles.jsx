@@ -13,11 +13,6 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
-  wrapperViews: {
-    display: 'flex',
-    alignItems: 'center',
-    alignSelf: 'flex-end'
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,

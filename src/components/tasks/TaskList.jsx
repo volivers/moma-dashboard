@@ -12,13 +12,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from '../../styles/TaskListStyles';
-
+// import ls from 'local-storage';
 
 const TaskList = ({ task }) => {
   const classes = useStyles();
@@ -41,12 +41,10 @@ const TaskList = ({ task }) => {
     setTasks(filtered);
   }, [priorityFilter])
 
-  const [open, setOpen] = useState(false);
-
   const handleFilterChange = (e, filterType) => {
     switch (filterType) {
       case "completed":
-          setCompletedFilter(e.target.value);
+        setCompletedFilter(e.target.value);
           break;
       case "priority":
           setPriorityFilter(e.target.value);
@@ -55,9 +53,24 @@ const TaskList = ({ task }) => {
     }
   }
 
+  const [open, setOpen] = useState(false);
+
   const handleOpenModal = () => {
     setOpen(true);
   };
+
+  // const [view, setView] = useState([]);
+  // useEffect(() => {
+  //   const savedView = localStorage.getItem("new-view");
+
+  //   if (savedView) {
+  //     setView(JSON.stringify(savedView))
+  //   }
+  // },[])
+
+  // useEffect(() => {
+  //   localStorage.setItem("new-view", JSON.stringify(view));
+  // },[view])
 
   return (
     <div className="tasks-list">
@@ -68,12 +81,12 @@ const TaskList = ({ task }) => {
           </Fab>
         </Tooltip>
         <TaskForm open={open} setOpen={setOpen} tasks={tasks} />
-        <Tooltip title="Edit task">
-          <Fab aria-label="edit" size="large" className={classes.btnFav} task={task}>
-            <EditIcon />
+        <Tooltip title="Save view">
+          <Fab aria-label="save" size="large" className={classes.btnFav}>
+            <SaveIcon />
           </Fab>
         </Tooltip>
-        <Tooltip title="Export tasks">
+        <Tooltip title="Export to...">
           <Fab aria-label="export"  size="large" className={classes.btnFav}>
             <CloudDownloadIcon />
           </Fab>
