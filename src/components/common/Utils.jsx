@@ -1,4 +1,3 @@
-import React from 'react';
 import faker from 'faker';
 
 export const Logo = () => {
@@ -21,7 +20,6 @@ const range = len => {
 
 const newArtwork = (index) => {
   const artists = ["Vincent van Gogh", "Andy Warhol", "Pablo Picasso", "Salvador Dalí"];
-  const statusChance = Math.random();
 
   return {
     id: index,

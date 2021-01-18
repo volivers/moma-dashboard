@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { LinkOperator, XGrid } from '@material-ui/x-grid';
 import SaveIcon from '@material-ui/icons/Save';
 import Fab from '@material-ui/core/Fab';
@@ -8,33 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: '10px 0',
-  },
-  wrapperArtworks: {
-    height: 350,
-    width: '100%'
-  },
-  wrapperTitle: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  wrapperViews: {
-    display: 'flex',
-    alignItems: 'center',
-    alignSelf: 'flex-end'
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import useStyles from '../../styles/ArtworksTableStyles';
 
 const ArtworksTable = ({ artworks }) => {
   const classes = useStyles();
