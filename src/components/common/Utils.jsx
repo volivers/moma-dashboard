@@ -1,15 +1,5 @@
 import faker from 'faker';
 
-export const Logo = () => {
-  return (
-    <div className="logo">
-      <a href="https://www.moma.org/" target="_blank" rel="noopener noreferrer">
-        <img src="https://res.cloudinary.com/djlmbrvcx/image/upload/v1610641278/Museum_of_Modern_Art_logo_white_fkxk0o.svg" alt="MoMA logo" height="20" />
-      </a>
-    </div>
-  );
-};
-
 const range = len => {
   const arr = [];
   for (let i = 0; i < len; i++) {
@@ -52,7 +42,7 @@ const newTask = (index) => {
       randChance > 0.66
         ? "High"
         : randChance > 0.33 ? "Medium" : "Low",
-    user:
+    userName:
       randChance > 0.75
         ? "Robin"
         : randChance > 0.5
@@ -76,9 +66,10 @@ export const makeTasks = len => {
 const currentUser = (index) => {
   return {
     id: index,
-    firstName: "Ted",
-    LastName: "Mosby",
-    email: "ted.mosby@gmail.com",
+    userName: "Banksy",
+    firstName: "Robert",
+    LastName: "Banks",
+    email: "banksy@gmail.com",
     password: faker.internet.password()
   };
 };

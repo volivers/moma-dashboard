@@ -12,13 +12,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
-import SaveIcon from '@material-ui/icons/Save';
+import ShareIcon from '@material-ui/icons/Share';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from '../../styles/TaskListStyles';
-// import ls from 'local-storage';
 
 const TaskList = ({ task }) => {
   const classes = useStyles();
@@ -59,19 +58,6 @@ const TaskList = ({ task }) => {
     setOpen(true);
   };
 
-  // const [view, setView] = useState([]);
-  // useEffect(() => {
-  //   const savedView = localStorage.getItem("new-view");
-
-  //   if (savedView) {
-  //     setView(JSON.stringify(savedView))
-  //   }
-  // },[])
-
-  // useEffect(() => {
-  //   localStorage.setItem("new-view", JSON.stringify(view));
-  // },[view])
-
   return (
     <div className="tasks-list">
       <div className={classes.wrapperBtn}>
@@ -81,9 +67,9 @@ const TaskList = ({ task }) => {
           </Fab>
         </Tooltip>
         <TaskForm open={open} setOpen={setOpen} tasks={tasks} />
-        <Tooltip title="Save view">
-          <Fab aria-label="save" size="large" className={classes.btnFav}>
-            <SaveIcon />
+        <Tooltip title="Share">
+          <Fab aria-label="share" size="large" className={classes.btnFav}>
+            <ShareIcon />
           </Fab>
         </Tooltip>
         <Tooltip title="Export to...">
@@ -157,7 +143,7 @@ const TaskList = ({ task }) => {
                     size="small"
                     style={{ marginLeft: '5px', color: '#616161', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
                     avatar={<AccountCircleIcon />}
-                    label={task.user}
+                    label={task.userName}
                   />
                 </Alert>
               </div>

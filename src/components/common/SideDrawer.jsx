@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './Logo';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +17,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Logo } from './Utils';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from '../../styles/SideDrawerStyles';
 
@@ -56,10 +56,10 @@ const SideDrawer = ({ users }) => {
         </IconButton>
         {users.map(user => {
           return(
-            <p key={user.id}>Hello, {user.firstName}.</p>
+            <p key={user.id}>Hello, {user.userName}.</p>
           );
         })}
-        <Logo class="logo"/>
+        <Logo />
       </Toolbar>
       </AppBar>
       <Drawer
@@ -97,7 +97,7 @@ const SideDrawer = ({ users }) => {
             <ListItemIcon className="list-icon"><AccountCircleIcon /></ListItemIcon>
             {users.map(user => {
               return(
-                <ListItemText primary={user.firstName} />
+                <ListItemText primary={user.userName} />
               );
             })}
           </ListItem>

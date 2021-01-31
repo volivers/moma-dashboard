@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeArtworks } from '../common/Utils';
-import { LinkOperator, XGrid } from '@material-ui/x-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from '../../styles/ArtworksTableStyles';
 
@@ -14,20 +14,12 @@ const ArtworksTable = () => {
     setArtworks(initArtworks);
   },[])
 
-  const filterModel = {
-    items: [
-      { columnField: 'artist', operatorValue: 'contains', value: 'Picasso' },
-      { columnField: 'collection', operatorValue: 'contains', value: 'Modern' },
-    ],
-    linkOperator: LinkOperator.And,
-  };
-
   return (
     <div className={classes.wrapperArtworks}>
       <div className={classes.wrapperTitle}>
         <h2><FavoriteIcon /> ArtWorks</h2>
       </div>
-      <XGrid
+      <DataGrid
         className={classes.root}
         showToolbar
         rowHeight={25}
@@ -44,7 +36,6 @@ const ArtworksTable = () => {
           { field: 'task_id', headerName: 'Task #REF', description: 'Task ID', width: 100 },
         ]}
         rows={artworks}
-        filterModel={filterModel}
       />
     </div>
   );
