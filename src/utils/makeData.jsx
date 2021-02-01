@@ -44,14 +44,12 @@ const newTask = (index) => {
         : randChance > 0.33 ? "Medium" : "Low",
     userName:
       randChance > 0.75
-        ? "Ross"
+        ? "Invader"
         : randChance > 0.5
-        ? "Rachel"
+        ? "Vhils"
         : randChance > 0.25
-        ? "Phoebe" : "Joey",
-    completed:
-      randChance > 0.5
-        ? "true" : "false"
+        ? "Obey" : "Banksy",
+    completed: "false"
   };
 };
 
@@ -67,8 +65,6 @@ const currentUser = (index) => {
   return {
     id: index,
     userName: "Banksy",
-    firstName: "Robert",
-    LastName: "Banks",
     email: "banksy@gmail.com",
     password: faker.internet.password()
   };

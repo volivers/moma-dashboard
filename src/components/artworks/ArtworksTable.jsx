@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeArtworks } from '../../utils/Utils';
+import { makeArtworks } from '../../utils/makeData';
 import { DataGrid } from '@material-ui/data-grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from '../../styles/ArtworksTableStyles';

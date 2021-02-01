@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeTasks } from '../../utils/Utils';
+import { makeTasks } from '../../utils/makeData';
 import Task from './Task';
 import TaskFilters from './TaskFilters';
 import TaskForm from './TaskForm';
@@ -13,7 +13,7 @@ import useStyles from '../../styles/TaskListStyles';
 
 const TaskList = ({ task }) => {
   const classes = useStyles();
-  const initTasks = makeTasks(13);
+  const initTasks = makeTasks(12);
 
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
