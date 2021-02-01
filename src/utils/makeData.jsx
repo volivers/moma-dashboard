@@ -10,15 +10,23 @@ const range = len => {
 
 const newArtwork = (index) => {
   const artists = ["Vincent van Gogh", "Andy Warhol", "Pablo Picasso", "Salvador Dalí"];
+  const artist = artists[Math.floor ( Math.random() * artists.length )];
+  const randChance = Math.random();
 
   return {
     id: index,
     title: faker.lorem.words(),
-    artist: artists[Math.floor ( Math.random() * artists.length )],
-    collection: "Modern Art",
+    artist: artist,
+    collection:
+      artist === "Andy Warhol"
+        ? "American Art"
+        : "European Art",
     medium: 'Oil on canvas',
-    dimensions: '73 x 92',
-    task_id: Math.floor(Math.random() * (13 - 1) + 1)
+    dimensions:
+      randChance > 0.66
+        ? '92 x 73'
+        : '73 x 92',
+    // task_id: Math.floor(Math.random() * (13 - 1) + 1)
   };
 };
 
@@ -37,7 +45,7 @@ const newTask = (index) => {
     id: index,
     title: faker.git.commitMessage(),
     date: faker.date.recent(),
-    artwork_id: Math.floor ( Math.random() * 100 ),
+    // artwork_id: Math.floor ( Math.random() * 100 ),
     priority:
       randChance > 0.66
         ? "High"

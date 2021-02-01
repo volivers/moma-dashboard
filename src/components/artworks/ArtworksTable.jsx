@@ -28,12 +28,12 @@ const ArtworksTable = () => {
         pagination
         columns={[
           { field: 'id', headerName: '#REF', description: '#REF', hide: true },
-          { field: 'title', headerName: 'Title', description: 'Title', width: 110 },
-          { field: 'artist', headerName: 'Artist', description: 'Artist', width: 140 },
+          { field: 'title', headerName: 'Title', description: 'Title', width: 130 },
+          { field: 'artist', headerName: 'Artist', description: 'Artist', width: 150 },
           { field: 'collection', headerName: 'Collection', description: 'Collection', width: 120 },
-          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 110 },
+          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 120 },
           { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 },
-          { field: 'task_id', headerName: 'Task #REF', description: 'Task ID', width: 100 },
+          // { field: 'task_id', headerName: 'Task #REF', description: 'Task ID', width: 100 },
         ]}
         rows={artworks}
       />

@@ -13,7 +13,7 @@ import useStyles from '../../styles/TaskListStyles';
 
 const TaskList = ({ task }) => {
   const classes = useStyles();
-  const initTasks = makeTasks(12);
+  const initTasks = makeTasks(10);
 
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
