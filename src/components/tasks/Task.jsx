@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
+import Collapse from '@material-ui/core/Collapse';
 import Alert from '@material-ui/lab/Alert';
 import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,8 +12,14 @@ import useStyles from '../../styles/TaskStyles';
 const Task = ({ task }) => {
   const classes = useStyles();
 
+  const [open, setOpen] = useState(true);
+
+  const handleTaskDone = () => {
+    setOpen(false);
+  };
+
   return (
-    <div>
+    <Collapse in={open}>
       <Alert
         variant="filled"
         severity={task.priority === "High" ? "error" : task.priority === "Medium" ? "warning" : "info"}
@@ -20,7 +27,7 @@ const Task = ({ task }) => {
         key={task.id}
         task={task}
         action={ task.completed === "false" ?
-          <IconButton aria-label="done" size="small" >
+          <IconButton aria-label="done" size="small" onClick={handleTaskDone}>
             <CloseIcon />
           </IconButton> : ""
         }
@@ -39,7 +46,7 @@ const Task = ({ task }) => {
           label={task.userName}
         />
       </Alert>
-    </div>
+    </Collapse>
   );
 };
 
