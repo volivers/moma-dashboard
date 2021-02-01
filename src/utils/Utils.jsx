@@ -44,11 +44,11 @@ const newTask = (index) => {
         : randChance > 0.33 ? "Medium" : "Low",
     userName:
       randChance > 0.75
-        ? "Robin"
+        ? "Ross"
         : randChance > 0.5
-        ? "Barney"
+        ? "Rachel"
         : randChance > 0.25
-        ? "Ted" : "Lilly",
+        ? "Phoebe" : "Joey",
     completed:
       randChance > 0.5
         ? "true" : "false"

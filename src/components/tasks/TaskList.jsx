@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeTasks } from '../../utils/Utils';
 import Task from './Task';
+import TaskFilters from './TaskFilters';
 import TaskForm from './TaskForm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Fab from '@material-ui/core/Fab';
@@ -8,9 +9,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import ShareIcon from '@material-ui/icons/Share';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import useStyles from '../../styles/TaskListStyles';
 
 const TaskList = ({ task }) => {
@@ -75,41 +73,7 @@ const TaskList = ({ task }) => {
       <div className="wrapper-tasks" >
         <div className={classes.wrapperTitle}>
           <h2><AssignmentIcon /> Tasks</h2>
-          <div className={classes.wrapperFiltering}>
-            <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="completed-native-simple">Status</InputLabel>
-                  <Select
-                    native
-                    value={completedFilter}
-                    onChange={(e) => handleFilterChange(e, "completed")}
-                    inputProps={{
-                      name: 'completed',
-                      id: 'completed-native-simple',
-                    }}
-                  >
-                <option aria-label="None" value="" />
-                <option value={"true"}>Completed</option>
-                <option value={"false"}>In progress</option>
-              </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="priority-native-simple">Priority</InputLabel>
-              <Select
-                native
-                value={priorityFilter}
-                onChange={(e) => handleFilterChange(e, "priority")}
-                inputProps={{
-                  name: 'priority',
-                  id: 'priority-native-simple',
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option value={"High"}>High</option>
-                <option value={"Medium"}>Medium</option>
-                <option value={"Low"}>Low</option>
-              </Select>
-            </FormControl>
-          </div>
+          <TaskFilters completedFilter={completedFilter} priorityFilter={priorityFilter} handleFilterChange={handleFilterChange} />
         </div>
         <div className={classes.wrapperList}>  
           {tasks.map(task => task.filtered === true ? (
