@@ -21,6 +21,7 @@ const TaskList = () => {
       return new Date(a.date) - new Date(b.date);
     });
     setSortedTasks(dateSorting);
+    console.log(sortedTasks)
   }, [sortedTasks, tasks])
 
   // const [completedFilter, setCompletedFilter] = useState("");
@@ -81,7 +82,14 @@ const TaskList = () => {
         <div className={classes.wrapperList}>  
           {/* {tasks.map(task => task.filtered === true ? ( */}
           {sortedTasks.map(task => (
-            <Task task={task} />
+            <Task
+              key={task.id}
+              title={task.title}
+              date={task.date}
+              priority={task.priority}
+              userName={task.userName}
+              completed={task.completed}
+            />
           // ) : '')}
           ))}
         </div>
