@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import { makeTasks } from '../../utils/makeData';
 import { TasksContext } from '../../contexts/tasks.context';
 import Task from './Task';
 import TaskFilters from './TaskFilters';
@@ -16,10 +15,18 @@ const TaskList = () => {
   const classes = useStyles();
   const tasks = useContext(TasksContext);
 
+  const [sortedTasks, setSortedTasks] = useState([]);
+  useEffect(() => {
+    const dateSorting = tasks.sort((a,b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+    setSortedTasks(dateSorting);
+  }, [sortedTasks, tasks])
+
   // const [completedFilter, setCompletedFilter] = useState("");
   // useEffect(() => {
   //   const filtered = initTasks.map(task => ({ ...task, filtered: task.completed.includes(completedFilter) }));
-  //   setTasks(filtered)
+  //   setTasks(filtered);
   // }, [completedFilter])
 
   // const [priorityFilter, setPriorityFilter] = useState("");
@@ -73,7 +80,7 @@ const TaskList = () => {
         </div>
         <div className={classes.wrapperList}>  
           {/* {tasks.map(task => task.filtered === true ? ( */}
-          {tasks.map(task => (
+          {sortedTasks.map(task => (
             <Task task={task} />
           // ) : '')}
           ))}
