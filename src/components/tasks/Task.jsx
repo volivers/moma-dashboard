@@ -17,7 +17,7 @@ const Task = ({ task }) => {
 
   const handleTaskCompleted = () => {
     setOpen(false);
-    setCompleted("true");
+    setCompleted(true);
   };
 
   return (
@@ -28,7 +28,7 @@ const Task = ({ task }) => {
         className={task.priority === "High" ? classes.error : task.priority === "Medium" ? classes.warning : classes.info}
         key={task.id}
         task={task}
-        action={ task.completed === "false" ?
+        action={ task.completed === false ?
           <IconButton aria-label="done" size="small" onClick={handleTaskCompleted}>
             <DoneIcon />
           </IconButton> : ""

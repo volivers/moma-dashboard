@@ -57,7 +57,7 @@ const newTask = (index) => {
         ? "Vhils"
         : randChance > 0.25
         ? "Obey" : "Banksy",
-    completed: "false"
+    completed: false
   };
 };
 

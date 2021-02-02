@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { makeCurrentUsers } from './utils/makeData';
+import { makeCurrentUsers } from './data/makeData';
 import SideDrawer from './components/common/SideDrawer';
 import UrgentTasks from './components/counters/UrgentTasks';
 import CompletedTasks from './components/counters/CompletedTasks';
 import ArtworksTable from './components/artworks/ArtworksTable';
 import TotalArtworks from './components/counters/TotalArtworks';
 import Timeline from './components/timeline/Timeline';
+import { TasksProvider } from './contexts/tasks.context';
 import TaskList from './components/tasks/TaskList';
 import Footer from './components/common/Footer';
 
@@ -25,12 +26,14 @@ const App = () => {
           <TotalArtworks />
           <UrgentTasks />
           <CompletedTasks />
-        </div>        
+        </div>
           <ArtworksTable />
           <Timeline />
       </div>
       <div className="right-scene">
-        <TaskList />
+        <TasksProvider>
+          <TaskList />
+        </TasksProvider>
         <Footer />
       </div>
     </main>

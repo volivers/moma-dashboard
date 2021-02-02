@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { makeTasks } from '../../utils/makeData';
+import React, { useState, useEffect, useContext } from 'react';
+// import { makeTasks } from '../../utils/makeData';
+import { TasksContext } from '../../contexts/tasks.context';
 import Task from './Task';
 import TaskFilters from './TaskFilters';
 import TaskForm from './TaskForm';
@@ -11,38 +12,33 @@ import ShareIcon from '@material-ui/icons/Share';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import useStyles from '../../styles/TaskListStyles';
 
-const TaskList = ({ task }) => {
+const TaskList = () => {
   const classes = useStyles();
-  const initTasks = makeTasks(10);
+  const tasks = useContext(TasksContext);
 
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    setTasks(initTasks);
-  },[])
+  // const [completedFilter, setCompletedFilter] = useState("");
+  // useEffect(() => {
+  //   const filtered = initTasks.map(task => ({ ...task, filtered: task.completed.includes(completedFilter) }));
+  //   setTasks(filtered)
+  // }, [completedFilter])
 
-  const [completedFilter, setCompletedFilter] = useState("");
-  useEffect(() => {
-    const filtered = initTasks.map(task => ({ ...task, filtered: task.completed.includes(completedFilter) }));
-    setTasks(filtered)
-  }, [completedFilter])
+  // const [priorityFilter, setPriorityFilter] = useState("");
+  // useEffect(() => {
+  //   const filtered = initTasks.map(task => ({ ...task, filtered: task.priority.includes(priorityFilter) }));
+  //   setTasks(filtered);
+  // }, [priorityFilter])
 
-  const [priorityFilter, setPriorityFilter] = useState("");
-  useEffect(() => {
-    const filtered = initTasks.map(task => ({ ...task, filtered: task.priority.includes(priorityFilter) }));
-    setTasks(filtered);
-  }, [priorityFilter])
-
-  const handleFilterChange = (e, filterType) => {
-    switch (filterType) {
-      case "completed":
-        setCompletedFilter(e.target.value);
-          break;
-      case "priority":
-          setPriorityFilter(e.target.value);
-          break;
-      default: break;
-    }
-  }
+  // const handleFilterChange = (e, filterType) => {
+  //   switch (filterType) {
+  //     case "completed":
+  //       setCompletedFilter(e.target.value);
+  //         break;
+  //     case "priority":
+  //         setPriorityFilter(e.target.value);
+  //         break;
+  //     default: break;
+  //   }
+  // }
 
   const [open, setOpen] = useState(false);
 
@@ -54,11 +50,11 @@ const TaskList = ({ task }) => {
     <div className="tasks-list">
       <div className={classes.wrapperBtn}>
         <Tooltip title="Create task">
-          <Fab color="primary" aria-label="add" size="large" className={classes.btnFav} tasks={tasks} onClick={handleOpenModal}>
+          <Fab color="primary" aria-label="add" size="large" className={classes.btnFav} onClick={handleOpenModal}>
             <AddIcon />
           </Fab>
         </Tooltip>
-        <TaskForm open={open} setOpen={setOpen} tasks={tasks} />
+        <TaskForm open={open} setOpen={setOpen} />
         <Tooltip title="Share">
           <Fab aria-label="share" size="large" className={classes.btnFav}>
             <ShareIcon />
@@ -73,12 +69,14 @@ const TaskList = ({ task }) => {
       <div className="wrapper-tasks" >
         <div className={classes.wrapperTitle}>
           <h2><AssignmentIcon /> Tasks</h2>
-          <TaskFilters completedFilter={completedFilter} priorityFilter={priorityFilter} handleFilterChange={handleFilterChange} />
+          {/* <TaskFilters completedFilter={completedFilter} priorityFilter={priorityFilter} handleFilterChange={handleFilterChange} /> */}
         </div>
         <div className={classes.wrapperList}>  
-          {tasks.map(task => task.filtered === true ? (
+          {/* {tasks.map(task => task.filtered === true ? ( */}
+          {tasks.map(task => (
             <Task task={task} />
-          ) : '')}
+          // ) : '')}
+          ))}
         </div>
       </div>
     </div>

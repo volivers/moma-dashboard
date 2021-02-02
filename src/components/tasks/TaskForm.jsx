@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { DispatchContext } from '../../contexts/tasks.context';
+import useInputState from '../../hooks/useInputState';
+import { ADD_TASK } from '../../constants/actions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,27 +17,34 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import useStyles from '../../styles/TaskFormStyles';
 
-const Taskform = ({ open, setOpen, tasks }) => {
+const Taskform = ({ open, setOpen }) => {
   const classes = useStyles();
+  const dispatch = useContext(DispatchContext);
 
+  const [selectedTitle, handleTitleChange, clearTitle] = useInputState('');
+  const [selectedPriority, handlePriorityChange] = useInputState('High');
+  const [selectedUserName, handleUserNameChange] = useInputState('Banksy');
   const [selectedDate, setSelectedDate] = useState(new Date('2021-02-08T21:11:54'));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const [state, setState] = useState('');
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-      ...state,
-      [name]: event.target.value,
-    });
-  };
-
   const handleCloseModal = () => {
     setOpen(false);
+  };
+
+  const handleNewTask = (e) => {
+    e.preventDefault();
+    dispatch({
+              type: ADD_TASK,
+              title: selectedTitle,
+              date: selectedDate,
+              priority: selectedPriority,
+              userName: selectedUserName
+    });
+    handleCloseModal();
+    clearTitle();
   };
 
   return (
@@ -45,87 +55,74 @@ const Taskform = ({ open, setOpen, tasks }) => {
           <DialogContentText>
             Please enter the new task details.
           </DialogContentText>
-          <Grid container justify="space-between">
-            <TextField
-              autoFocus
-              margin="dense"
-              id="title"
-              label="Task"
-              type="title"
-              fullWidth
-            />
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
+          <form onSubmit={handleNewTask}>
+            <Grid container justify="space-between">
+              <TextField
+                autoFocus
+                margin="dense"
+                id="title"
+                label="Task"
+                type="title"
+                fullWidth
+                value={selectedTitle}
+                onChange={handleTitleChange}
+              />
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    margin="dense"
+                    id="date-picker-dialog"
+                    label="Date"
+                    format="dd/MM/yyyy"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+              </MuiPickersUtilsProvider>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="age-native-simple">Priority</InputLabel>
+                <Select
                   margin="dense"
-                  id="date-picker-dialog"
-                  label="Date picker dialog"
-                  format="MM/dd/yyyy"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
+                  native
+                  value={selectedPriority}
+                  onChange={handlePriorityChange}
+                  inputProps={{
+                    name: 'priority',
+                    id: 'priority-native-simple',
                   }}
-                />
-            </MuiPickersUtilsProvider>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="age-native-simple">Priority</InputLabel>
-              <Select
-                margin="dense"
-                native
-                value={tasks.priority}
-                onChange={handleChange}
-                inputProps={{
-                  name: 'priority',
-                  id: 'priority-native-simple',
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option value={"High"}>High</option>
-                <option value={"Medium"}>Medium</option>
-                <option value={"Low"}>Low</option>
-              </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="artwork-native-simple">Artwork</InputLabel>
-              <Select
-                margin="dense"
-                native
-                value={tasks.artwork_id}
-                onChange={handleChange}
-                inputProps={{
-                  name: 'artwork',
-                  id: 'artwork-native-simple',
-                }}
-              >
-                <option aria-label="None" value="" />
-              </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="user-native-simple">Assign to...</InputLabel>
-              <Select
-                margin="dense"
-                native
-                value={tasks.user}
-                onChange={handleChange}
-                inputProps={{
-                  name: 'user',
-                  id: 'user-native-simple',
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option value={"High"}>Robin</option>
-                <option value={"Medium"}>Barney</option>
-                <option value={"Low"}>Ted</option>
-                <option value={"Low"}>Lilly</option>
-              </Select>
-            </FormControl>
-          </Grid>
+                >
+                  <option value={"High"}>High</option>
+                  <option value={"Medium"}>Medium</option>
+                  <option value={"Low"}>Low</option>
+                </Select>
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="user-native-simple">Assign to...</InputLabel>
+                <Select
+                  margin="dense"
+                  native
+                  value={selectedUserName}
+                  onChange={handleUserNameChange}
+                  inputProps={{
+                    name: 'user',
+                    id: 'user-native-simple',
+                  }}
+                >
+                  <option value={"Banksy"}>Banksy</option>
+                  <option value={"Invader"}>Invader</option>
+                  <option value={"Vhils"}>Vhils</option>
+                  <option value={"Obey"}>Obey</option>
+                </Select>
+              </FormControl>
+            </Grid>
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseModal} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleCloseModal} variant="contained" color="primary">
+          <Button onClick={handleNewTask} variant="contained" color="primary">
             Save
           </Button>
         </DialogActions>

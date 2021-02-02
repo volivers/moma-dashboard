@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeArtworks } from '../../utils/makeData';
+import { makeArtworks } from '../../data/makeData';
 import { DataGrid } from '@material-ui/data-grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from '../../styles/ArtworksTableStyles';
@@ -28,10 +28,10 @@ const ArtworksTable = () => {
         pagination
         columns={[
           { field: 'id', headerName: '#REF', description: '#REF', hide: true },
-          { field: 'title', headerName: 'Title', description: 'Title', width: 130 },
+          { field: 'title', headerName: 'Title', description: 'Title', width: 150 },
           { field: 'artist', headerName: 'Artist', description: 'Artist', width: 150 },
-          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 120 },
-          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 120 },
+          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 130 },
+          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 130 },
           { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 },
           // { field: 'task_id', headerName: 'Task #REF', description: 'Task ID', width: 100 },
         ]}
