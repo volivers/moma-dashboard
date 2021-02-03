@@ -14,7 +14,7 @@ const reducer = (state, action) => {
       }];
     case COMPLETE_TASK:
       return state.map(task =>
-        task.id === action.id ? { ...task, completed: !task.completed } : task
+        task.title === action.title ? { ...task, completed: !task.completed } : task
       );
     default:
       return state;

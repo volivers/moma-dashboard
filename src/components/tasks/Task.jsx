@@ -18,7 +18,7 @@ const Task = ({ id, title, date, priority, userName, completed }) => {
   const [open, setOpen] = useState(true);
 
   const handleTaskCompleted = () => {
-    dispatch({ type: COMPLETE_TASK, id });
+    dispatch({ type: COMPLETE_TASK, title });
     setOpen(false);
   };
 
