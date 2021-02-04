@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { makeCurrentUsers } from '../data/makeData';
+import React from 'react';
 import SideDrawer from './common/SideDrawer';
 import UrgentTasks from './counters/UrgentTasks';
 import CompletedTasks from './counters/CompletedTasks';
@@ -10,14 +9,9 @@ import TaskList from './tasks/TaskList';
 import Footer from './common/Footer';
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    setUsers(makeCurrentUsers(1));
-  },[])
-
   return (
     <main className="app">
-      <SideDrawer users={users} />
+      <SideDrawer />
       <div className="left-scene">
         <h1>Dashboard</h1>
         <div className="wrapper-counters">

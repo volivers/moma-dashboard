@@ -7,10 +7,10 @@ export const ArtworksContext = createContext();
 
 export function ArtworksProvider(props) {
   const [artworks] = [defaultArtworks];
-  
+
   return (
     <ArtworksContext.Provider value={artworks}>
-        {props.children}
+      {props.children}
     </ArtworksContext.Provider>
   );
 }

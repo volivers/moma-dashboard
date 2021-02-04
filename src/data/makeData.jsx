@@ -23,10 +23,9 @@ const newArtwork = (index) => {
         : "European Art",
     medium: 'Oil on canvas',
     dimensions:
-      randChance > 0.66
+      randChance > 0.5
         ? '92 x 73'
-        : '73 x 92',
-    // task_id: Math.floor(Math.random() * (13 - 1) + 1)
+        : '73 x 92'
   };
 };
 
@@ -45,7 +44,6 @@ const newTask = (index) => {
     id: index,
     title: faker.git.commitMessage(),
     date: faker.date.recent(),
-    // artwork_id: Math.floor ( Math.random() * 100 ),
     priority:
       randChance > 0.66
         ? "High"

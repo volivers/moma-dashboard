@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { UsersContext } from '../../contexts/users.context';
 import Logo from './Logo';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,10 +21,12 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from '../../styles/SideDrawerStyles';
 
-const SideDrawer = ({ users }) => {
+const SideDrawer = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const users = useContext(UsersContext);
+
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
