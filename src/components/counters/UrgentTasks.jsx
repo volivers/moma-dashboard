@@ -71,7 +71,7 @@ class ImplementedArtworks extends Component {
 
     let ratio;
     if (urgent.length !== 0) {
-      ratio = [(urgent.length / this.context.length) * 100];
+      ratio = [Math.floor((urgent.length / this.context.length) * 100)];
     } else {
       ratio = [0];
     };

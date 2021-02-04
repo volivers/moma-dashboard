@@ -71,7 +71,7 @@ class CompletedTasks extends Component {
 
     let ratio;
     if (completed.length !== 0) {
-      ratio = [(completed.length / this.context.length) * 100];
+      ratio = [Math.floor((completed.length / this.context.length) * 100)];
     } else {
       ratio = [0];
     };
