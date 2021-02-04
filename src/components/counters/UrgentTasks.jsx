@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { TasksContext } from '../../contexts/tasks.context';
 import ReactApexChart from 'react-apexcharts';
 
 class ImplementedArtworks extends Component {
+  static contextType = TasksContext;
+
   constructor(props) {
     super(props);
-
     this.state = {
-    
-      series: [64],
       options: {
         chart: {
           height: 200,
@@ -65,9 +65,14 @@ class ImplementedArtworks extends Component {
   }
 
   render() {
+    const { tasks } = this.context;
+    const urgent = [];
+    this.context.map(task => task.priority === 'High' ? urgent.push(task) : task);
+    const ratio = [(urgent.length / this.context.length) * 100];
+
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={200} width={200} />
+        <ReactApexChart options={this.state.options} series={ratio} type="radialBar" height={200} width={200} />
       </div>
     );
   }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { ArtworksContext } from '../../contexts/artworks.context';
 import ReactApexChart from 'react-apexcharts';
 
 class TotalArtworks extends Component {
+  static contextType = ArtworksContext;
+
   constructor(props) {
     super(props);
     this.state = {
-    
-      series: [100],
       options: {
         chart: {
           height: 200,
@@ -64,9 +65,12 @@ class TotalArtworks extends Component {
   }
 
   render() {
+    const { artworks } = this.context;
+    const total = [this.context.length];
+
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={200} width={200} />
+        <ReactApexChart options={this.state.options} series={total} type="radialBar" height={200} width={200} />
       </div>
     );
   }

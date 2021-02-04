@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { TasksContext } from '../../contexts/tasks.context';
 import ReactApexChart from 'react-apexcharts';
 
 class CompletedTasks extends Component {
+  static contextType = TasksContext;
+
   constructor(props) {
     super(props);
-
     this.state = {
-    
-      series: [86],
       options: {
         chart: {
           height: 200,
@@ -65,9 +65,20 @@ class CompletedTasks extends Component {
   }
 
   render() {
+    const { tasks } = this.context;
+    const completed = [];
+    this.context.map(task => task.completed === true ? completed.push(task) : task);
+
+    let ratio;
+    if (completed.length !== 0) {
+      ratio = [(completed.length / this.context.length) * 100];
+    } else {
+      ratio = [0];
+    };
+
     return (
       <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="radialBar" height={200} width={200} />
+        <ReactApexChart options={this.state.options} series={ratio} type="radialBar" height={200} width={200} />
       </div>
     );
   }
