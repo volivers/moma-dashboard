@@ -68,7 +68,13 @@ class ImplementedArtworks extends Component {
     const { tasks } = this.context;
     const urgent = [];
     this.context.map(task => task.priority === 'High' ? urgent.push(task) : task);
-    const ratio = [(urgent.length / this.context.length) * 100];
+
+    let ratio;
+    if (urgent.length !== 0) {
+      ratio = [(urgent.length / this.context.length) * 100];
+    } else {
+      ratio = [0];
+    };
 
     return (
       <div id="chart">
