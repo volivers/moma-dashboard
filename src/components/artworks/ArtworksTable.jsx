@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { makeArtworks } from '../../data/makeData';
+import React, { useContext } from 'react';
+import { ArtworksContext } from '../../contexts/artworks.context';
 import { DataGrid } from '@material-ui/data-grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from '../../styles/ArtworksTableStyles';
@@ -7,12 +7,7 @@ import useStyles from '../../styles/ArtworksTableStyles';
 
 const ArtworksTable = () => {
   const classes = useStyles();
-  const initArtworks = makeArtworks(100);
-
-  const [artworks, setArtworks] = useState([]);
-  useEffect(() => {
-    setArtworks(initArtworks);
-  },[])
+  const artworks = useContext(ArtworksContext);
 
   return (
     <div className={classes.wrapperArtworks}>
@@ -24,7 +19,7 @@ const ArtworksTable = () => {
         showToolbar
         rowHeight={25}
         headerHeight={40}
-        pageSize={50}
+        pageSize={25}
         pagination
         columns={[
           { field: 'id', headerName: '#REF', description: '#REF', hide: true },
@@ -32,8 +27,7 @@ const ArtworksTable = () => {
           { field: 'artist', headerName: 'Artist', description: 'Artist', width: 150 },
           { field: 'collection', headerName: 'Collection', description: 'Collection', width: 130 },
           { field: 'medium', headerName: 'Medium', description: 'Medium', width: 130 },
-          { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 },
-          // { field: 'task_id', headerName: 'Task #REF', description: 'Task ID', width: 100 },
+          { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 }
         ]}
         rows={artworks}
       />

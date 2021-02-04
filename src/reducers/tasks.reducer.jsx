@@ -1,4 +1,4 @@
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
 import { ADD_TASK, COMPLETE_TASK } from '../constants/actions';
 
 const reducer = (state, action) => {

@@ -21,7 +21,6 @@ const TaskList = () => {
       return new Date(a.date) - new Date(b.date);
     });
     setSortedTasks(dateSorting);
-    console.log(sortedTasks)
   }, [sortedTasks, tasks])
 
   // const [completedFilter, setCompletedFilter] = useState("");
