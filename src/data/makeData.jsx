@@ -43,7 +43,7 @@ const newTask = (index) => {
   return {
     id: index,
     title: faker.git.commitMessage(),
-    date: faker.date.recent(),
+    date: faker.date.between('2021-01-01', '2021-06-30'),
     priority:
       randChance > 0.66
         ? "High"

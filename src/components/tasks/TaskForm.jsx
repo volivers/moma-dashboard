@@ -20,11 +20,11 @@ import useStyles from '../../styles/TaskFormStyles';
 const Taskform = ({ open, setOpen }) => {
   const classes = useStyles();
   const dispatch = useContext(DispatchContext);
-
+  
   const [selectedTitle, handleTitleChange, clearTitle] = useInputState('');
   const [selectedPriority, handlePriorityChange] = useInputState('High');
   const [selectedUserName, handleUserNameChange] = useInputState('Banksy');
-  const [selectedDate, setSelectedDate] = useState(new Date('2021-02-08T21:11:54'));
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);

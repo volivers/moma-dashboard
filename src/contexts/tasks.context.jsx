@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import tasksReducer from '../reducers/tasks.reducer';
 import { makeTasks } from '../data/makeData';
 
-const defaultTasks = makeTasks(10);
+const defaultTasks = makeTasks(50);
 
 export const TasksContext = createContext();
 export const DispatchContext = createContext();
