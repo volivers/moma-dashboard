@@ -100,7 +100,7 @@ const SideDrawer = () => {
             <ListItemIcon className="list-icon"><AccountCircleIcon /></ListItemIcon>
             {users.map(user => {
               return(
-                <ListItemText primary={user.userName} />
+                <ListItemText primary={user.userName} key={user.id} />
               );
             })}
           </ListItem>
