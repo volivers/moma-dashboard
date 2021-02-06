@@ -56,7 +56,7 @@ const newTask = (index) => {
         : randChance > 0.25
         ? "Obey" : "Banksy",
     completed:
-      randChance > 0.25
+      randChance > 0.15
       ? false : true
   };
 };

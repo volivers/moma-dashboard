@@ -100,7 +100,7 @@ const TaskList = () => {
           />
         </div>
         <div className={classes.wrapperList}>  
-          {sortedTasks.map(task => task.filtered === true ? (
+          {sortedTasks.map(task => !task.completed && task.filtered ? (
             <Task
               key={task.id}
               title={task.title}
