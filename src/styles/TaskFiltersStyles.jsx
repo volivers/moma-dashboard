@@ -4,7 +4,8 @@ export default makeStyles((theme) => ({
   wrapperFiltering: {
     display: 'flex',
     alignItems: 'center',
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
+    marginBottom: '10px'
   },
   formControl: {
     margin: theme.spacing(1),

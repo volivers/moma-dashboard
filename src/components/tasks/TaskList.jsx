@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { TasksContext } from '../../contexts/tasks.context';
+import moment from 'moment';
 import Task from './Task';
 import TaskFilters from './TaskFilters';
 import TaskForm from './TaskForm';
@@ -15,37 +16,46 @@ const TaskList = () => {
   const classes = useStyles();
   const tasks = useContext(TasksContext);
 
-  const [sortedTasks, setSortedTasks] = useState([]);
+  const [sortedTasks, setSortedTasks] = useState(tasks);
   useEffect(() => {
     const dateSorting = tasks.sort((a,b) => {
       return new Date(a.date) - new Date(b.date);
     });
     setSortedTasks(dateSorting);
-  }, [sortedTasks, tasks])
+  }, [tasks])
 
-  // const [completedFilter, setCompletedFilter] = useState("");
-  // useEffect(() => {
-  //   const filtered = initTasks.map(task => ({ ...task, filtered: task.completed.includes(completedFilter) }));
-  //   setTasks(filtered);
-  // }, [completedFilter])
+  const [dateFilter, setDateFilter] = useState('');
+  useEffect(() => {
+    const filtered = tasks.map(task => ({ ...task, filtered: moment(task.date).format("MMM").includes(dateFilter) }));
+    setSortedTasks(filtered);
+  }, [dateFilter, tasks])
 
-  // const [priorityFilter, setPriorityFilter] = useState("");
-  // useEffect(() => {
-  //   const filtered = initTasks.map(task => ({ ...task, filtered: task.priority.includes(priorityFilter) }));
-  //   setTasks(filtered);
-  // }, [priorityFilter])
+  const [priorityFilter, setPriorityFilter] = useState('');
+  useEffect(() => {
+    const filtered = tasks.map(task => ({ ...task, filtered: task.priority.includes(priorityFilter) }));
+    setSortedTasks(filtered);
+  }, [priorityFilter, tasks])
 
-  // const handleFilterChange = (e, filterType) => {
-  //   switch (filterType) {
-  //     case "completed":
-  //       setCompletedFilter(e.target.value);
-  //         break;
-  //     case "priority":
-  //         setPriorityFilter(e.target.value);
-  //         break;
-  //     default: break;
-  //   }
-  // }
+  const [userFilter, setUserFilter] = useState('');
+  useEffect(() => {
+    const filtered = tasks.map(task => ({ ...task, filtered: task.userName.includes(userFilter) }));
+    setSortedTasks(filtered);
+  }, [userFilter, tasks])
+
+  const handleFilterChange = (e, filterType) => {
+    switch (filterType) {
+      case "date":
+        setDateFilter(e.target.value);
+        break;
+      case "priority":
+        setPriorityFilter(e.target.value);
+        break;
+      case "user":
+        setUserFilter(e.target.value);
+        break;
+      default: break;
+    }
+  }
 
   const [open, setOpen] = useState(false);
 
@@ -57,7 +67,13 @@ const TaskList = () => {
     <div className="tasks-list">
       <div className={classes.wrapperBtn}>
         <Tooltip title="Create task">
-          <Fab color="primary" aria-label="add" size="large" className={classes.btnFav} onClick={handleOpenModal}>
+          <Fab
+            color="primary"
+            aria-label="add"
+            size="large"
+            className={classes.btnFav}
+            onClick={handleOpenModal}
+          >
             <AddIcon />
           </Fab>
         </Tooltip>
@@ -76,11 +92,15 @@ const TaskList = () => {
       <div className="wrapper-tasks" >
         <div className={classes.wrapperTitle}>
           <h2><AssignmentIcon /> Tasks</h2>
-          {/* <TaskFilters completedFilter={completedFilter} priorityFilter={priorityFilter} handleFilterChange={handleFilterChange} /> */}
+          <TaskFilters
+            dateFilter={dateFilter}
+            priorityFilter={priorityFilter}
+            userFilter={userFilter}
+            handleFilterChange={handleFilterChange}
+          />
         </div>
         <div className={classes.wrapperList}>  
-          {/* {tasks.map(task => task.filtered === true ? ( */}
-          {sortedTasks.map(task => (
+          {sortedTasks.map(task => task.filtered === true ? (
             <Task
               key={task.id}
               title={task.title}
@@ -89,8 +109,7 @@ const TaskList = () => {
               userName={task.userName}
               completed={task.completed}
             />
-          // ) : '')}
-          ))}
+          ) : '')}
         </div>
       </div>
     </div>
