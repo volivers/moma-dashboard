@@ -1,10 +1,10 @@
 # Turtle Movie Chat
 
-> Art museum task manager dashboard created with React and the [Context API](https://reactjs.org/docs/context.html#api), using [Material-UI](https://material-ui.com/) and [ApexCharts.js](https://material-ui.com/) to power the user experience and data visualization.
+> Art museum task manager dashboard created with React and [Context API](https://reactjs.org/docs/context.html#api), using [Material-UI](https://material-ui.com/) and [ApexCharts.js](https://material-ui.com/) to power the user experience and data visualization.
 
 ## Overview
 
-In the art world, it is rumoured that Banksy along with a team of famous street artists
+In the art world, it is rumoured that **Banksy** along with a team of famous street artists
 are launching a top secret plan to break into the [Museum of Modern Art](https://www.moma.org/), and replace
 their artworks with street art ones.
 
@@ -12,7 +12,7 @@ To make this mighty plan happen, they need a system where they can create and or
 while tracking their progress as well as all the data of the artworks to be replaced.
 
 The goal of this project was to design and build an interface displaying the team's tasks,
-data and timeline in a single overview. 
+data and timeline in a single overview.
 
 ## Live version
 
@@ -35,7 +35,8 @@ so you can view the project in the browser.
 ## Features
 
 This project was built upon 3 main features: Task Manager, Artworks Table and Analytics.
-After breaking them down, Banksy is able to:
+
+After breaking them down, **Banksy** is able to:
 
 1. Task Manager
     * List all tasks
@@ -121,6 +122,7 @@ The `/src` contains all the React codebase, as well as the `App.scss` overall st
 #### `/components`
 
 This folder includes all the components used to build the project, dumb and smart ones.
+
 While the dumb components used were clustered at the `/common` folder, smart components were
 arranged according to the their features under `/artworks`, `metrics`, `/tasks` and `/timeline`.
 
@@ -131,8 +133,8 @@ and actions needed can be found under these 3 folders.
 
 #### `/data`
 
-It contains all the functions needed to randomize data about artworks, tasks and users
-used to feed this project.
+It contains all the functions used to randomize data about artworks, tasks and users
+needed to feed this project.
 
 #### `/hooks`
 
@@ -141,15 +143,19 @@ It includes all the customized hooks used to build this project.
 #### `/styles`
 
 Since the components were styled using [Material-UI](https://material-ui.com/)’s styling solution and best practises,
-their files were clustered at the `/styles` folder. This way, the components’ logic and
+their files were clustered here. This way, the components’ logic and
 styles are cleanly separate.
 
 ## Contributing
 
 Pull requests are welcome. For major changes, open an issue first to discuss what you would like to change.
+
 Please make sure to include or update tests as appropriate.
 
 ## License
 
-The MIT License [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+The MIT License (MIT) 
+
 Copyright © 2021 Vasco Oliveira
