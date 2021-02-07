@@ -1,4 +1,4 @@
-# Turtle Movie Chat
+# MoMA Dashboard
 
 > Art museum task manager dashboard created with React and [Context API](https://reactjs.org/docs/context.html#api), using [Material-UI](https://material-ui.com/) and [ApexCharts.js](https://material-ui.com/) to power the user experience and data visualization.
 
