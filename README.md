@@ -63,7 +63,7 @@ despite having been fed with randomized data.
 
 ### Demo
 
-<!-- ![Demo](./demo.gif) -->
+![Demo](./demo.gif)
 
 ## Architecture
 
