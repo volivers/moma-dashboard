@@ -11,8 +11,8 @@ their artworks with street art ones.
 To make this mighty plan happen, they need a system where they can create and organize tasks,
 while tracking their progress as well as all the data of the artworks to be replaced.
 
-The goal of this project was to design and build an interface displaying the team's tasks,
-data and timeline in a single overview.
+The goal of this project was to design and build a single interface displaying the team's
+tasks, data and timeline.
 
 ## Live version
 
@@ -155,7 +155,5 @@ Please make sure to include or update tests as appropriate.
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-The MIT License (MIT) 
 
 Copyright © 2021 Vasco Oliveira
