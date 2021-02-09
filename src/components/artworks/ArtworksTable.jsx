@@ -25,8 +25,8 @@ const ArtworksTable = () => {
           { field: 'id', headerName: '#REF', description: '#REF', hide: true },
           { field: 'title', headerName: 'Title', description: 'Title', width: 150 },
           { field: 'artist', headerName: 'Artist', description: 'Artist', width: 150 },
-          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 130 },
-          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 130 },
+          { field: 'collection', headerName: 'Collection', description: 'Collection', width: 120 },
+          { field: 'medium', headerName: 'Medium', description: 'Medium', width: 120 },
           { field: 'dimensions', headerName: 'Dimensions', description: 'Dimensions', width: 130 }
         ]}
         rows={artworks}
