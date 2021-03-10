@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { DispatchContext } from '../../contexts/tasks.context';
-import useInputState from '../../hooks/useInputState';
+import { useInputState } from '../../hooks/useInputState';
 import { ADD_TASK } from '../../constants/actions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
